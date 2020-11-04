@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f1e67f3774e4a5897f2b8592af31100" Name="关系图1" ZoomLevel="112">
+        <EntityTypeShape EntityType="ItcastCmsModel.UserInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItcastCmsModel.ActionInfo" Width="1.5" PointX="8.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ItcastCmsModel.Department" Width="1.5" PointX="4.5" PointY="0.75" />
+        <EntityTypeShape EntityType="ItcastCmsModel.R_UserInfo_ActionInfo" Width="1.5" PointX="3.5" PointY="8.625" />
+        <EntityTypeShape EntityType="ItcastCmsModel.RoleInfo" Width="1.5" PointX="5.625" PointY="6.375" />
+        <AssociationConnector Association="ItcastCmsModel.FK_ActionInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="ItcastCmsModel.FK_UserInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="ItcastCmsModel.DepartmentActionInfo" />
+        <AssociationConnector Association="ItcastCmsModel.RoleInfoActionInfo" />
+        <AssociationConnector Association="ItcastCmsModel.UserInfoDepartment" />
+        <AssociationConnector Association="ItcastCmsModel.UserInfoRoleInfo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
