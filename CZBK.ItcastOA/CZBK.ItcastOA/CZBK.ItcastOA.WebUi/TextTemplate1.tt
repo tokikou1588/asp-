@@ -1,0 +1,14 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#for(int i=0;i<10;i++){#>
+public class UserInfo<#=i#>{
+	public string UserName{get;set;}
+}
+
+<#}#>
+
+
