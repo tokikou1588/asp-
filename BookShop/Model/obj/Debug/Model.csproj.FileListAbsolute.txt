@@ -1,0 +1,67 @@
+D:\bk\bookshop\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\bk\bookshop\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\bk\bookshop\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+D:\bk\bookshop\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\bk\bookshop\BookShop\Model\obj\Debug\BookShop.Model.pdb
+C:\10月\BookShop\BookShop\Model\bin\Debug\BookShop.Model.dll
+C:\10月\BookShop\BookShop\Model\bin\Debug\BookShop.Model.pdb
+C:\10月\BookShop\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\10月\BookShop\BookShop\Model\obj\Debug\BookShop.Model.dll
+C:\10月\BookShop\BookShop\Model\obj\Debug\BookShop.Model.pdb
+C:\LS\BookShop三层建好\BookShop\Model\bin\Debug\BookShop.Model.dll
+C:\LS\BookShop三层建好\BookShop\Model\bin\Debug\BookShop.Model.pdb
+C:\LS\BookShop三层建好\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\LS\BookShop三层建好\BookShop\Model\obj\Debug\BookShop.Model.dll
+C:\LS\BookShop三层建好\BookShop\Model\obj\Debug\BookShop.Model.pdb
+C:\Documents and Settings\Administrator\桌面\三层建好V2\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\桌面\三层建好V2\BookShop\Model\obj\Debug\BookShop.Model.dll
+C:\Documents and Settings\Administrator\桌面\三层建好V2\BookShop\Model\obj\Debug\BookShop.Model.pdb
+C:\Documents and Settings\Administrator\桌面\三层建好V2\BookShop\Model\bin\Debug\BookShop.Model.dll
+C:\Documents and Settings\Administrator\桌面\三层建好V2\BookShop\Model\bin\Debug\BookShop.Model.pdb
+C:\BookShop\Model\bin\Debug\BookShop.Model.dll
+C:\BookShop\Model\bin\Debug\BookShop.Model.pdb
+C:\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\BookShop\Model\obj\Debug\BookShop.Model.dll
+C:\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\源项目\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\源项目\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\源项目\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+D:\传智讲课\源项目\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\源项目\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0921\第三天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0921\第三天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0921\第三天\BookShop\Model\obj\Debug\ResolveAssemblyReference.cache
+D:\传智讲课\0921\第三天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0921\第三天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\1107班\电商\第一天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\1107班\电商\第一天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\1107班\电商\第一天\BookShop\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\传智讲课\1107班\电商\第一天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\1107班\电商\第一天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第一天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第一天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第一天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第一天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第一天\BookShop\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\传智讲课\0718就业班\电商\第二天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第二天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第二天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第二天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第三天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第三天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第三天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第三天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第四天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第四天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第四天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第四天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第五天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第五天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第五天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\电商\第五天\BookShop\Model\obj\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\电商\第五天\BookShop\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\传智讲课\0718就业班\MVC\第一天\BookShop\Model\bin\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\MVC\第一天\BookShop\Model\bin\Debug\BookShop.Model.pdb
+D:\传智讲课\0718就业班\MVC\第一天\BookShop\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\传智讲课\0718就业班\MVC\第一天\BookShop\Model\obj\Debug\BookShop.Model.dll
+D:\传智讲课\0718就业班\MVC\第一天\BookShop\Model\obj\Debug\BookShop.Model.pdb
