@@ -1,0 +1,4 @@
+obj\Debug\_CZBK.HeiMaOA.WorkFlow.g.cs
+obj\Debug\FincalActivity.g.cs
+obj\Debug\CZBK.HeiMaOA.WorkFlow_FincalActivity_BeforeInitializeComponentHelper.cs
+D:\传智讲课\黑马十四期\第十天\CZBK.HeiMaOA\CZBK.HeiMaOA.WorkFlow\obj\Debug\CZBK.HeiMaOA.WorkFlow_FincalActivity_CompiledExpressionRoot.cs

@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.HeiMaOA.Model
+@model CZBK.HeiMaOA.Model.WF_StepInfo
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CheckWF</title>
+
+</head>
+<body>
+   @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        CZBK.HeiMaOA.Model.WF_Instance instance = ViewBag.Instance;
+        List<CZBK.HeiMaOA.Model.WF_StepInfo> steps = ViewBag.Steps;
+         <table>
+            <tr>
+                <td>流程标题：</td><td>@instance.InstanceName</td>
+            </tr>
+            <tr>
+                <td>发起人：</td><td>@instance.StartedBy</td>
+            </tr>
+            <tr>
+                <td>发起时间：</td><td>@instance.SubTime</td>
+            </tr>
+             <tr>
+                <td>流程模板：</td><td>@instance.WF_Temp.TempName</td>
+            </tr>
+            <tr>
+                <td>申请内容：</td><td>@Html.Raw(instance.SubForm)</td>
+            </tr>
+             <tr>
+                 <td>流程步骤：</td><td>
+                                   @foreach (var wfStepInfo in steps)
+                                   {
+                                       <p>
+                                           审批步骤： @wfStepInfo.SetpName  <br/>
+                                           审批人：@wfStepInfo.ProcessBy<br/>
+                                           审批标题：@wfStepInfo.Title<br/>
+                                           审批意见：@wfStepInfo.Comment<br/>
+                                           审批结果：@if (wfStepInfo.StepResult == 0 || wfStepInfo.StepResult == 3)
+                                                {
+                                                    <span>通过</span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="color: red;font-weight: bold;">不通过</span>
+                                                }
+                                                    <hr/>
+                                       </p>
+                                   }
+                               </td>
+             </tr>
+             <tr>
+                 <td>您的审批标题：</td><td>@Html.EditorFor(m=>m.Title)</td>
+             </tr>
+             <tr>
+                 <td>您的审批意见：</td><td>@Html.EditorFor(m=>m.Comment)</td>
+             </tr>
+             <tr>
+                 <td>流转到：</td><td>@Html.DropDownList("ProcessBy")</td>
+             </tr>
+               <tr>
+                   <td>
+                       <input type="hidden" name="StepResult" id="StepResult"/>
+                       <input type="button" id="reject" value="驳回"/>
+                   </td><td>
+                              <input type="button" id="isPass" value="通过"/>
+                        </td>
+            </tr>
+        </table>
+    }
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e6df970923a4cf2af91e4551352fe7d" Name="关系图1" ZoomLevel="108">
+        <EntityTypeShape EntityType="OAModel.UserInfo" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OAModel.ActionInfo" Width="1.5" PointX="4.5" PointY="2.125" />
+        <EntityTypeShape EntityType="OAModel.Department" Width="1.5" PointX="6.375" PointY="3.75" />
+        <EntityTypeShape EntityType="OAModel.R_UserInfo_ActionInfo" Width="2" PointX="2.75" PointY="8.125" />
+        <EntityTypeShape EntityType="OAModel.RoleInfo" Width="1.5" PointX="2" PointY="5.25" />
+        <AssociationConnector Association="OAModel.FK_ActionInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="OAModel.FK_UserInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="OAModel.DepartmentActionInfo" />
+        <AssociationConnector Association="OAModel.RoleInfoActionInfo" />
+        <AssociationConnector Association="OAModel.UserInfoDepartment" />
+        <AssociationConnector Association="OAModel.UserInfoRoleInfo" />
+        <EntityTypeShape EntityType="OAModel.Books" Width="1.5" PointX="8.75" PointY="2.25" />
+        <EntityTypeShape EntityType="OAModel.KeyWordsRank" Width="1.5" PointX="8.875" PointY="7.125" />
+        <EntityTypeShape EntityType="OAModel.SearchDetails" Width="1.5" PointX="8.625" PointY="9.5" />
+        <EntityTypeShape EntityType="OAModel.FileInfo" Width="1.5" PointX="2.75" PointY="14.125" />
+        <EntityTypeShape EntityType="OAModel.WF_Instance" Width="1.5" PointX="6.875" PointY="12.625" />
+        <EntityTypeShape EntityType="OAModel.WF_StepInfo" Width="1.5" PointX="8.75" PointY="15.375" />
+        <EntityTypeShape EntityType="OAModel.WF_Temp" Width="1.5" PointX="11" PointY="13.625" />
+        <AssociationConnector Association="OAModel.FK_WF_InstanceWF_StepInfo" />
+        <AssociationConnector Association="OAModel.FK_WF_TempWF_Instance" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

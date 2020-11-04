@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object type=" CZBK.HeiMaOA.BLL.UserInfoService, CZBK.HeiMaOA.BLL" singleton="false" name="userInfoService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.RoleInfoService, CZBK.HeiMaOA.BLL" singleton="false" name="roleInfoService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.ActionInfoService, CZBK.HeiMaOA.BLL" singleton="false" name="actionInfoService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.R_UserInfo_ActionInfoService, CZBK.HeiMaOA.BLL" singleton="false" name="r_UserInfo_ActionInfoService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.BooksService, CZBK.HeiMaOA.BLL" singleton="false" name="bookService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.SearchDetailsService, CZBK.HeiMaOA.BLL" singleton="false" name="searchDetailService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.KeyWordsRankService, CZBK.HeiMaOA.BLL" singleton="false" name="keywordService" >
+  </object>
+
+  <object type=" CZBK.HeiMaOA.BLL.WF_TempService, CZBK.HeiMaOA.BLL" singleton="false" name="wf_TempService" >
+  </object>
+  <object type=" CZBK.HeiMaOA.BLL.WF_InstanceService, CZBK.HeiMaOA.BLL" singleton="false" name="wf_InstanceService" >
+  </object>
+
+  <object type=" CZBK.HeiMaOA.BLL.WF_StepInfoService, CZBK.HeiMaOA.BLL" singleton="false" name="setpInfoService" >
+  </object>
+</objects>

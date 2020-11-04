@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CZBK.HeiMaOA.Model.WF_Temp>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+             <a href="/WfInstance/StartWorkflow/?id=@item.ID">@item.TempName</a>
+            </td>
+            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

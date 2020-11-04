@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CZBK.HeiMaOA.Model.WF_Instance>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetMyWorkflows</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>
+             流程标题
+            </th>
+            <th>
+     流程发起人
+            </th>
+            <th>
+               	 紧急程度
+            </th>
+            <th>
+              审批
+            </th>
+       
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstanceName)
+            </td>
+       
+            <td>
+                @Html.DisplayFor(modelItem => item.StartedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                <a href="/WfInstance/CheckWF/?Id=@item.ID">审批</a> 
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

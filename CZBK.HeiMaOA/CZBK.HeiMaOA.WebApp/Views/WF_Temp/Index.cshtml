@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.HeiMaOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/tableStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <table>
+            <tr><th>模板编号</th><th>模板名</th><th>创建时间</th><th>备注</th><th>流程状态</th><th>操作</th></tr>
+            @foreach (var wf_Temp in (List<WF_Temp>)ViewData["list"])
+            {
+                <tr>
+                    <td>@wf_Temp.ID</td>
+                       <td>@wf_Temp.TempName</td>
+                       <td>@wf_Temp.SubTime</td>
+                       <td>@wf_Temp.Remark</td>
+                       <td>@wf_Temp.TempStatus</td>
+                       <td>编辑</td>
+                </tr>
+            }
+        </table>
+        <hr />
+        <a href="/WF_Temp/Create">创建模板</a>
+    </div>
+</body>
+</html>

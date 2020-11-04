@@ -1,0 +1,92 @@
+﻿@model CZBK.HeiMaOA.Model.WF_Temp
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <script src="../../Content/KinderEditor/kindeditor-min.js"></script>
+    <link rel="stylesheet" href="../../Content/KinderEditor/themes/default/default.css" />
+	<link rel="stylesheet" href="../../Content/KinderEditor/plugins/code/prettify.css" />
+	<script charset="utf-8" src="../../Content/KinderEditor/kindeditor.js"></script>
+	<script charset="utf-8" src="../../Content/KinderEditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="../../Content/KinderEditor/plugins/code/prettify.js"></script>
+
+    <script>//注意编辑器的使用
+        KindEditor.ready(function (K) {
+            var editor1 = K.create('#TempDescription', {
+                cssPath: '../../Content/KinderEditor/plugins/code/prettify.css',
+                uploadJson: '../../Content/KinderEditor/asp.net/upload_json.ashx',
+                fileManagerJson:
+'../../Content/KinderEditor/asp.net/file_manager_json.ashx',
+                allowFileManager: true,
+                afterCreate: function () {
+                    var self = this;
+                    //self.sync();//把富文本编辑器的内容放到  文本域里面去。
+                }
+            });
+            var editor2 = K.create('#TempForm', {
+                cssPath: '../../Content/KinderEditor/plugins/code/prettify.css',
+                uploadJson: '../../Content/KinderEditor/asp.net/upload_json.ashx',
+                fileManagerJson:
+'../../Content/KinderEditor/asp.net/file_manager_json.ashx',
+                allowFileManager: true,
+                afterCreate: function () {
+                    var self = this;
+                    //self.sync();//把富文本编辑器的内容放到  文本域里面去。
+                }
+            });
+
+            prettyPrint();
+        });
+	</script>
+</head>
+<body>
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>WF_Temp</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TempName,"模板名称")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TempName)
+                @Html.ValidationMessageFor(model => model.TempName)
+            </div>    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TempDescription,"模板介绍")
+            </div>
+            <div class="editor-field">
+               
+                <textarea id="TempDescription" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" name="TempDescription"></textarea>
+                @Html.ValidationMessageFor(model => model.TempDescription)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TempForm,"模板内容")
+            </div>
+            <div class="editor-field">
+                 <textarea id="TempForm" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" name="TempForm"></textarea>
+
+                @Html.ValidationMessageFor(model => model.TempForm)
+            </div>
+    
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
