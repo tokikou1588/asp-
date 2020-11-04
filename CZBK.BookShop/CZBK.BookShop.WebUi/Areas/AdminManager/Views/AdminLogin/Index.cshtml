@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>管理员登录</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnLogin").click(function () {
+                var loginParams = {
+                    userName: $("#txtUserName").val(),
+                    userPwd:$("#txtUserPwd").val()
+                };
+                $.post("/AdminManager/AdminLogin/UserLogin", loginParams, function (data) {
+                    if (data == "ok") {
+                        window.location.href = "/AdminManager/AdminHome/Index";
+                    }
+                    else {
+                        alert("用户名密码错误!!!");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <table>
+            <tr><td>用户名:</td><td><input type="text" name="txtName" id="txtUserName" /></td></tr>
+              <tr><td>密码:</td><td><input type="password" name="txtPwd" id="txtUserPwd" /></td></tr>
+              <tr><td><input type="button" value="管理员登录"  id="btnLogin"/></td></tr>
+        </table>
+    </div>
+</body>
+</html>

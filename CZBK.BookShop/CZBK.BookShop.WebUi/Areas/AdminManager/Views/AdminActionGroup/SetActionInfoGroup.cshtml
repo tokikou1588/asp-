@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.BookShop.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>为权限分组</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#form1").submit();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为权限组
+        @{
+            ActionGroup groupInfo = (ActionGroup)ViewData["groupInfo"];
+            @groupInfo.GroupName
+        }指定权限
+    </div>
+    <div>
+         @{
+            using(Ajax.BeginForm("SetActionGroupInfo",new{},new AjaxOptions(){ HttpMethod="post", OnSuccess="afterSet"},new{id="form1"})){
+                <input type="hidden" name="groupId" value="@groupInfo.ID" />
+                List<ActionInfo> actionInfoList = (List<ActionInfo>)ViewData["actionInfoList"];
+                List<int> actionInfoExtIdList = (List<int>)ViewData["actionInfoExtIdList"];
+                foreach (ActionInfo actionInfo in actionInfoList)
+            {
+                var checkName = "cba_" + actionInfo.ID;
+                if (actionInfoExtIdList.Contains(actionInfo.ID))
+                {
+                <input type="checkbox"  name="@checkName"  value="@actionInfo.ID" checked="checked" />@actionInfo.ActionInfoName
+                }else{
+                <input type="checkbox" value="@actionInfo.ID" name="@checkName" />@actionInfo.ActionInfoName
+                }
+            }
+            }
+        }
+    </div>
+</body>
+</html>

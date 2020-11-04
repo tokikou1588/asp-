@@ -1,0 +1,275 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+     <script src="~/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                loadData();
+                $("#addDiv").css("display", "none");
+                $("#editDiv").css("display", "none");
+
+            });
+            function loadData(params) {
+                $('#tt').datagrid({
+                    url: '/AdminManager/AdminBookManager/GetBookInfo',
+                    title: '图书数据表格',
+                    width: 700,
+                    height: 400,
+                    fitColumns: true, //列自适应
+                    nowrap: false,
+                    idField: 'ID',//主键列的列明
+                    loadMsg: '正在加载图书的信息...',
+                    pagination: true,//是否有分页
+                    singleSelect: false,//是否单行选择
+                    pageSize: 5,//页大小，一页多少条数据
+                    pageNumber: 1,//当前页，默认的
+                    pageList: [5, 10, 15],
+                    queryParams: params,//往后台传递参数
+                    columns: [[//c.UserName, c.UserPass, c.Email, c.RegTime
+                        { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                        { field: 'ID', title: '编号', width: 80 },
+                        { field: 'Title', title: '书名', width: 120 },
+                         { field: 'Author', title: '作者', width: 120 },
+                              { field: 'UnitPrice', title: '单价', width: 120 },
+                                   { field: 'ISBN', title: 'ISBN', width: 120 },
+                        {
+                            field: 'ShowDetail', title: '详细', width: 80, align: 'right',
+                            formatter: function (value, row, index) {
+                                return "<a href='javascript:void(0)' class='showDetails' ids='" + row.ID + "'>详细</a>";
+                            }
+                        }
+                    ]],
+                    toolbar: [{
+                        id: 'btnDelete',
+                        text: '删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            deleteInfo();
+                        }
+                    }, {
+                        id: 'btnAdd',
+                        text: '添加',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            addInfo();
+                        }
+                    }, {
+                        id: 'btnEdit',
+                        text: '编辑',
+                        iconCls: 'icon-edit',
+                        handler: function () {
+                            editInfo();
+                        }
+                    }],
+                    onLoadSuccess: function () {
+                        $(".showDetails").click(function () {
+                            alert($(this).attr("ids"));
+                            $('#tt').datagrid('clearSelections');//取消选择项.
+                        });
+                    },
+
+                });
+            }
+            //编辑信息
+            function editInfo() {
+                var rows = $('#tt').datagrid('getSelections');
+                if (!rows || rows.length != 1) {
+                    //alert("请选择要修改的商品！");
+                    $.messager.alert("提醒", "你回修改吗!", "error");
+                    return;
+                }
+                $("#editDiv").css("display", "block");
+                //$("#txtUserName").val(rows[0].UserName);
+                //$("#txtUserPass").val(rows[0].UserPass);
+                //$("#txtEmail").val(rows[0].Email);
+                //$("#txtRegTime").val(ChangeDateFormat(rows[0].RegTime));
+                //$("#txtId").val(rows[0].ID);
+                $("#editFrame").attr("src", "/AdminManager/AdminSetting/ShowEditInfo/?id=" + rows[0].ID)
+                $('#editDiv').dialog({
+                    title: "编辑信息",
+                    width: 300,
+                    height: 400,
+                    collapsible: true,
+                    resizable: true,
+                    modal: true,
+                    buttons: [{
+                        text: '确定',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            //完成表单的校验.
+                            //$("#editForm").submit();//提交表单
+                            var childWindow = $("#editFrame")[0].contentWindow;//获取子窗体的window对象.
+                            childWindow.subForm();
+                        }
+                    }, {
+                        text: '取消',
+                        handler: function () {
+                            $('#editDiv').dialog('close');
+                        }
+                    }]
+                });
+            }
+
+            //修改完成以后调用该方法
+            function afterEdit(data) {
+                if (data == "ok") {
+                    $('#editDiv').dialog('close');
+                    $('#tt').datagrid('reload');//加载数据显示当前页面
+                }
+            }
+
+            //添加数据
+            function addInfo() {
+                $("#addDiv").css("display", "block");
+                $("#addFrame").attr("src", "/AdminManager/AdminBookManager/ShowAddInfo");
+                $('#addDiv').dialog({
+                    title: "添加信息",
+                    width: 400,
+                    height: 400,
+                    collapsible: true,
+                    resizable: true,
+                    modal: true,
+                    buttons: [{
+                        text: '确定',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            //完成表单的校验.
+                            //  $("#addForm").submit();//提交表单
+                            var childWindow = $("#addFrame")[0].contentWindow;
+                            childWindow.SubForm();
+                        }
+                    }, {
+                        text: '取消',
+                        handler: function () {
+                            $('#addDiv').dialog('close');
+                        }
+                    }]
+                });
+
+            }
+            //添加完成以后调用该方法
+            function afterAdd(data) {
+                if (data == "ok") {
+                    $('#addDiv').dialog('close');
+                    $('#tt').datagrid('reload');//加载数据显示当前页面
+                    $("#addForm input").val("");
+                }
+            }
+
+            //删除数据
+            function deleteInfo() {
+                var rows = $('#tt').datagrid('getSelections');
+                if (!rows || rows.length == 0) {
+                    //alert("请选择要修改的商品！");
+                    $.messager.alert("提醒", "请选择要删除的记录!", "error");
+                    return;
+                }
+                if ($.messager.confirm("提示", "确定要删除吗?", function (r) {
+                    if (r) {
+                       var strId = "";
+                for (var i = 0; i < rows.length; i++) {
+                    strId = strId + rows[i].ID + ",";//6,4,
+                }
+                strId = strId.substr(0, strId.length - 1);//6,4
+                $.post("/AdminManager/AdminSetting/DeleteSettingInfo", { "strId": strId }, function (data) {
+                    if (data == "ok") {
+                    //重新加载.
+                    //loadData();
+                        $('#tt').datagrid('clearSelections');//取消选择项.
+                        $('#tt').datagrid('reload');//加载数据显示当前页面
+                } else {
+                        $.messager.alert("提醒", "删除失败!", "error");
+                        return;
+                }
+                })
+                }
+                }));
+            }
+            function ChangeDateFormat(cellval) {
+                var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                return date.getFullYear() + "-" + month + "-" + currentDate;
+            }
+
+    </script>
+</head>
+<body>
+    <div>
+          <div>
+      
+ <table id="tt" style="width: 700px;" title="标题，可以使用代码进行初始化，也可以使用这种属性的方式" iconcls="icon-edit">
+        </table>
+    </div>
+    <!----------------------------添加用户信息---------------------------------------->
+    <div id="addDiv">
+    @*    @using(Ajax.BeginForm("AddBookInfo",new{},new AjaxOptions(){HttpMethod="post", OnSuccess="afterAdd"},new{id="addForm"})){
+        <table>
+            <tr>
+                <td>图书名称:</td><td><input type="text" name="Title"></td>
+            </tr>
+            <tr>
+                <td>作者:</td><td><input type="text" name="Author" /></td>
+            </tr>
+                     <tr>
+                <td>单价:</td><td><input type="text" name="UnitPrice" /></td>
+            </tr>
+             <tr>
+                <td>ISBN:</td><td><input type="text" name="ISBN" /></td>
+            </tr>
+            <tr>
+                <td>内容简介:</td><td><textarea name="ContentDescription" rows="20" cols="30" id="ContentDescription"></textarea></td>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    // Replace the <textarea id="editor1"> with an CKEditor instance.
+                    var editor = CKEDITOR.replace('ContentDescription');
+                    //]]>
+		</script>
+            </tr>
+        </table>
+        }*@
+        <iframe frameborder="0" scrolling="auto" width="100%" height="100%" id="addFrame"></iframe>
+
+    </div>
+      <!----------------------------添加用户信息结束---------------------------------------->
+
+     <!----------------------------编辑用户信息---------------------------------------->
+    <div id="editDiv">
+         @* @using(Ajax.BeginForm("EditUserInfo",new{},new AjaxOptions(){HttpMethod="post", OnSuccess="afterEdit"},new{id="editForm"})){
+              <input type="hidden" name="ID" id="txtId" />
+        <table>
+            <tr>
+                <td>用户名:</td><td><input type="text" name="UserName" id="txtUserName" /></td>
+            </tr>
+            <tr>
+                <td>密码:</td><td><input type="text" name="UserPass" id="txtUserPass" /></td>
+            </tr>
+            <tr>
+                <td>邮箱:</td><td><input type="text" name="Email" id="txtEmail"/></td>
+            </tr>
+            <tr>
+                <td>日期</td><td><input type="text" name="RegTime" id="txtRegTime" /></td>
+            </tr>
+        </table>
+        }*@
+        <iframe frameborder="0" scrolling="no" width="100%" height="100%" id="editFrame"></iframe>
+
+    </div>
+    <!----------------------------编辑用户信息结束---------------------------------------->
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.BookShop.WebUi.Models
+@using CZBK.BookShop.Common
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <style type="text/css">
+        textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: #FFFFFF;
+    border:0 none;
+    outline:0 none;
+    box-shadow: none;
+    transition: none;
+}
+input[type="text"]:focus{outline:none;box-shadow: none;}
+
+body .search-text2{ display:block; width:528px; height:26px; line-height:26px; float:left; margin:3px 5px; border:1px solid black; outline:none; font-family:'Microsoft Yahei'; font-size:14px;}
+
+body .search-btn2{width:102px; height:32px; line-height:32px; cursor:pointer; border:0px; background-color:#d6000f;font-family:'Microsoft Yahei'; font-size:16px;color:#f3f3f3;}
+
+.search-list{width:600px; overflow:hidden; margin:10px 20px 0px 20px;}
+
+.search-list dt{font-family:'Microsoft Yahei'; font-size:16px; line-height:20px; margin-bottom:7px; font-weight:normal;}
+.search-list dt a{color:#2981a9;}
+.search-list dt a em{ font-style:normal; color:#cc0000;}
+.search-list .search-detail{font-size:12px; color:#666666;margin-bottom:5px; font-family:Arial;line-height:16px;}
+.search-list .search-detail em{font-style:normal; color:#cc0000;}
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#txtSearchContent").autocomplete({
+                source: "/Search/GetKeyWord"
+               
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div>
+        <form method="get" action="/Search/SearchContent">
+            <input type="text" name="txtSearchContent" class="search-text2" autocomplete="off" id="txtSearchContent" />
+            <input type="submit" value="搜一搜" name="btnSearch" class="search-btn2" />
+        @*    <input type="submit" value="创建索引库" name="btnCreate" />*@
+        </form>
+            </div>
+        <hr />
+        @if( ViewData["resultList"]!=null)
+        {
+        <dl class="search-list">
+            @foreach (var searchResult in (List<ViewSearchResult>)ViewData["resultList"])
+            {
+                <dt><a href="@string.Format("{0}{1}.html",WebCommon.GetDir(Convert.ToDateTime(searchResult.PublishDate)),searchResult.Id)"> @searchResult.Title</a></dt>
+                <dd class="search-detail">@MvcHtmlString.Create(searchResult.Content)</dd>
+            }
+        </dl>
+        }
+    </div>
+</body>
+</html>

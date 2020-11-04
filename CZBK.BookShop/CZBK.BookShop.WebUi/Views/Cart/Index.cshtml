@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@section head{
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            getTotalMoney();
+        });
+        function changeBar(operator, bookId, pkId) {
+            var $control = $("#txtCount" + bookId);//获取文本框.
+            var count = $control.val();
+            if (operator == '-') {
+                count = parseInt(count) - 1;
+                if (count < 1) {
+                    $("#errorMsg").text("商品数量最少为1");
+                    showMsg();
+                    //alert("商品数量最少为1");
+                    return;
+                }
+            } else if (operator == '+') {
+                count = parseInt(count) + 1;
+                if (count > 999) {
+                    //alert("商品数量太多了!!");
+                    $("#errorMsg").text("商品数量太多了!!");
+                    showMsg();
+                    return;
+                }
+            } else {
+                alert("参数错误!!");
+                return;
+            }
+            $.post("/Cart/EditCart", { "count": count, "bookId": bookId, "pkId": pkId }, function (data) {
+                if (data == "ok") {
+                    $control.val(count);//更新文本框中的值
+                    //更新商品总价
+                    getTotalMoney();
+                } else {
+                    alert("更新失败");
+                }
+            });
+
+        }
+        //删除购物车中商品
+        function removeProductOnShoppingCart(pkId, bookId,control) {
+            if (confirm("确定要删除该商品吗??")) {
+                $.post("/Cart/DeleteCart", { "bookId": bookId, "pkId": pkId }, function (data) {
+                    if (data == "ok") {
+                        $(control).parent().parent().remove();
+                        //更新商品总价
+                        getTotalMoney();
+                    } else {
+                        alert("删除失败!!");
+                    }
+                });
+            }
+        }
+        function showMsg() {
+            $("#dialog-message").dialog({
+                modal: true,
+                buttons: {
+                    确定: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+        //计算总价
+        function getTotalMoney() {
+            var totalMoney = 0;
+            $(".align_Center:gt(0)").each(function () {
+                var price = $(this).find(".price").text();
+                var count = $(this).find("input").val();
+                totalMoney = totalMoney + (parseInt(count) * parseFloat(price));
+            });
+            $("#totleMoney").text(fmoney(totalMoney,2));
+        }
+
+        function fmoney(s, n) {
+            n = n > 0 && n <= 20 ? n : 2;
+            s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";//更改这里n数也可确定要保留的小数位  
+            var l = s.split(".")[0].split("").reverse(),
+         r = s.split(".")[1];
+            t = "";
+            for (i = 0; i < l.length; i++) {
+                t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+            }
+            return t.split("").reverse().join("") + "." + r.substring(0, 2);//保留2位小数  如果要改动 把substring 最后一位数改动就可  
+        }
+    </script>
+}
+@using CZBK.BookShop.Model
+    <div>
+    <table cellpadding="0" cellspacing="0"  width="98%">
+        <tr>
+            <td colspan="2">
+                <img height="27" 
+                    src="/images/shop-cart-header-blue.gif" width="206" /><img alt="" 
+                    src="/Images/png-0170.png" /><asp:HyperLink ID="HyperLink1" runat="server" 
+                    NavigateUrl="~/myorder.aspx">我的订单</asp:HyperLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" width="98%">
+          
+                <table  cellpadding='0' cellspacing='0' width='100%' >
+ <tr class='align_Center Thead'>
+    <td width='7%' style='height:30px'>图片</td>
+    <td>图书名称</td>
+    <td width='14%'>单价</td>
+    <td width='11%'>购买数量</td>
+    <td width='7%'>删除图书</td>
+ </tr>
+
+  @if(ViewData["cartList"]!=null)
+  {
+      foreach(var cartModel in (List<Cart>)ViewData["cartList"])
+      {
+<!--一行数据的开始 -->
+<tr class='align_Center'>
+   <td style='padding:5px 0 5px 0;'><img src='@string.Format("/images/bookcovers/{0}.jpg",cartModel.Books.ISBN)' width="40" height="50" border="0" /></td>
+   <td class='align_Left'>@cartModel.Books.Title</td>
+   <td>
+<span class='price'>@cartModel.Books.UnitPrice.ToString("0.00")</span>
+</td>
+   <td><a href='#none' title='减一' onclick="changeBar('-',@cartModel.Books.Id,@cartModel.Id)" style='margin-right:2px;' ><img src="/Images/bag_close.gif" width="9" height="9" border='none' style='display:inline' /></a>
+     <input type='text' id='@string.Format("txtCount{0}",cartModel.Books.Id)' name='@string.Format("txtCount{0}",cartModel.Books.Id)' maxlength='3' style='width:30px' onKeyDown='if(event.keyCode == 13) event.returnValue = false' value='@cartModel.Count' onfocus='changeTxtOnFocus();' onblur="changeTextOnBlur();" />
+     <a href='#none' title='加一' onclick="changeBar('+',@cartModel.Books.Id,@cartModel.Id)" style='margin-left:2px;' ><img src='/images/bag_open.gif' width="9" height="9" border='none' style='display:inline' /></a>   </td>
+   <td>
+   <a href='#none' id='btn_del_1000357315' onclick="removeProductOnShoppingCart(@cartModel.Id,@cartModel.Books.Id,this)" >
+       删除</a></td>
+</tr>
+<!--一行数据的结束 -->
+  }
+  }
+  else
+  {
+      <tr><td>购物车中暂无商品,请访问商品列表页面选择商品</td></tr>
+  }
+
+ <tr>
+    <td class='align_Right Tfoot' colspan='5' style='height:30px'>&nbsp;</td>
+ </tr>
+</table>
+</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                &nbsp;&nbsp;&nbsp; 商品金额总计：<span ID="totleMoney"  style="font-size:25px;color:red;font-weight:bolder"
+                   >0</span>元</td>
+            <td>
+                &nbsp;
+               <a href="/BookList/Index"> <img alt="" src="/Images/gobuy.jpg" width="103" height="36" border="0" /> </a><a href="/Cart/OrderConfirm"><img src="/images/balance.gif" 
+                     border="0" /></a>
+              
+            </td>
+        </tr>
+    </table>
+    </div>
+<div id="dialog-message" title="出错了">
+	<span id="errorMsg" style="font-size:16px;color:red"></span>
+</div>
+

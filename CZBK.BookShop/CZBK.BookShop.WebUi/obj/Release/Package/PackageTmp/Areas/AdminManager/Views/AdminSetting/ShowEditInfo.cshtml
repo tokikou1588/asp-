@@ -1,0 +1,59 @@
+﻿@model CZBK.BookShop.Model.Settings
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowEditInfo</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function afterEdit(data) {
+            window.parent.afterEdit(data);
+        }
+        function subForm() {
+            $("#form1").submit();
+        }
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("EditSettingInfo",new{},new AjaxOptions(){HttpMethod="post",OnSuccess="afterEdit"},new{id="form1"})) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Settings</legend>
+    
+            @Html.HiddenFor(model => model.Id)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                <input type="text" name="Name" readonly="readonly" value="@Model.Name"/>
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Value)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Value)
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+    
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

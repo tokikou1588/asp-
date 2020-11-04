@@ -1,0 +1,75 @@
+﻿@model CZBK.BookShop.Model.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowEditInfo</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subEditForm() {
+            $("#editForm").submit();
+        }
+        function afterEdit(data) {
+            window.parent.afterEdit(data);
+        }
+    </script>
+</head>
+<body>
+   @using(Ajax.BeginForm("EditUserInfo",new{},new AjaxOptions(){HttpMethod="post", OnSuccess="afterEdit"},new{id="editForm"})){
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>UserInfo</legend>
+    
+            @Html.HiddenFor(model => model.ID)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserPass)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserPass)
+                @Html.ValidationMessageFor(model => model.UserPass)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RegTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RegTime)
+                @Html.ValidationMessageFor(model => model.RegTime)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+    
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

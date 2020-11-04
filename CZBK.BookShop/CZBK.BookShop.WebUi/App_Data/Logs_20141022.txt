@@ -1,0 +1,198 @@
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 09:30:55,125 [26] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.132:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2014-10-22 09:30:55,144 [26] ERROR Memcached.ClientLibrary.SockIOPool - Failed to create connection to: 10.0.0.132:11211 -- only 0 created
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 09:52:20,492 [57] ERROR errorMsg - System.Web.HttpRequestValidationException (0x80004005): 从客户端(msg="<form method="post" ...")中检测到有潜在危险的 Request.Form 值。
+   在 System.Web.HttpRequest.ValidateString(String value, String collectionKey, RequestValidationSource requestCollection)
+   在 System.Web.HttpRequest.<>c__DisplayClass5.<ValidateHttpValueCollection>b__3(String key, String value)
+   在 System.Web.HttpValueCollection.EnsureKeyValidated(String key)
+   在 System.Web.HttpValueCollection.Get(String name)
+   在 System.Web.HttpRequest.get_Item(String key)
+   在 System.Web.HttpRequestWrapper.get_Item(String key)
+   在 CZBK.BookShop.WebUi.Controllers.BookListController.AddComment() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\BookListController.cs:行号 32
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+2014-10-22 09:52:35,510 [57] ERROR errorMsg - System.Web.HttpRequestValidationException (0x80004005): 从客户端(msg="<form method="post" ...")中检测到有潜在危险的 Request.Form 值。
+   在 System.Web.HttpRequest.ValidateString(String value, String collectionKey, RequestValidationSource requestCollection)
+   在 System.Web.HttpRequest.<>c__DisplayClass5.<ValidateHttpValueCollection>b__3(String key, String value)
+   在 System.Web.HttpValueCollection.EnsureKeyValidated(String key)
+   在 System.Web.HttpValueCollection.Get(String name)
+   在 System.Web.HttpRequest.get_Item(String key)
+   在 System.Web.HttpRequestWrapper.get_Item(String key)
+   在 CZBK.BookShop.WebUi.Controllers.BookListController.AddComment() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\BookListController.cs:行号 32
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 11:16:49,478 [60] ERROR errorMsg - System.ArgumentException: 正在分析“18dy|97114376|cet4{2}答|cheap|GCD|Government|ibeifeng|javass|Java私塾|menglu|t56|taobao.com|tzbxw.com|welkin|安定片|罢餐|罢工|罢食|百{2}家{2}乐|百家乐|办理证件|办证|棒子|北风网|厂家|成人|丑化|出售|从业资格|打倒|大揭露|大荣|代\考|代{2}考|代考|党国|盗电|等级答案|抵制|地{2}磅|丁{2}香{2}成{2}人|定{2}位{2}器|毒品|短信猫|短信注册|二奶|发{2}票|发票|發{2}票|法轮|反动|反共|反华|反中|废水厂|复{2}制{2}手{2}机{2}卡|改分数|干{2}扰{2}器|干扰器|高干子弟|高干子女|高考答案|高丽|高莺莺|供不应求|共产|共狗|官场段子|官员|广东王|汉奸|浩方对站平台活动|虎{2}头{2}牌|户口代办|皇冠|昏药|货到付款|鸡巴|基金|激{2}情{2}裸{2}聊|急聘|假币|假钞|监{2}听{2}器|江氏|解{2}码{2}器|金{2}属{2}探{2}测|禁书|警方|考{2}中{2}答{2}案|考研答案|可儿|刻章|口头检查|老{2}虎{2}机|立即申请|两会|猎{2}枪|猎枪|领导人|流师|留学必备|六{2}閤{2}彩|六{2}合{2}彩|六合|六级答案|露点|乱交|论{2}坛{2}代{2}发{2}帖|论{2}坛{2}群{2}发|裸体|麻{2}果|麻{2}醉{2}枪|麻醉|马克杯|马上体验|毛派|毛片|玫瑰园|美国空间|迷{2}幻{2}药|迷{2}药|迷药|免{2}费{2}淫|免费空间|尿道|女优|拍{2}肩|批发|迫害|签证|枪{2}支|枪手|抢奖|情色|情欲|群发|热线|人民报|日赚|赛马|三{2}唑{2}仑|三级片|色{2}色{2}成{2}人|色情|杀人|上{2}分{2}器|上{2}门{2}服{2}务|上门服务|时代互联|饰品|收款|手{2}机{2}监{2}听|手{2}机{2}卡{2}复{2}制|手{2}枪|手机窃|手枪|手淫|首饰|售价|熟女|司法|私{2}服|私服|私塾|死{2}亡{2}笔{2}记|四级答案|四六级答案|四我周|送话费|送货上门|台湾|糖尿病|陶瓷|套牌|特价|替{2}考|替考|天安门|天浴|偷电|偷窥|偷拍|投注|推{2}广{2}小{2}助{2}手|退党|托管|外{2}挂|外遇|网络代理|网络推广|网络营销|网赚|...”－ 无法识别的转义序列 \考。
+   在 System.Text.RegularExpressions.RegexParser.ScanCharEscape()
+   在 System.Text.RegularExpressions.RegexParser.ScanBasicBackslash()
+   在 System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   在 System.Text.RegularExpressions.RegexParser.ScanRegex()
+   在 System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   在 System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   在 System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern)
+   在 CZBK.BookShop.BLL.BooksService.CheckModWord(String msg) 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.BLL\BooksService.cs:行号 72
+   在 CZBK.BookShop.WebUi.Controllers.BookListController.AddComment() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\BookListController.cs:行号 39
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 11:21:59,375 [35] ERROR errorMsg - System.ArgumentException: 正在分析“18dy|97114376|cet4.{0,2}答|cheap|GCD|Government|ibeifeng|javass|Java私塾|menglu|t56|taobao.com|tzbxw.com|welkin|安定片|罢餐|罢工|罢食|百.{0,2}家.{0,2}乐|百家乐|办理证件|办证|棒子|北风网|厂家|成人|丑化|出售|从业资格|打倒|大揭露|大荣|代\考|代.{0,2}考|代考|党国|盗电|等级答案|抵制|地.{0,2}磅|丁.{0,2}香.{0,2}成.{0,2}人|定.{0,2}位.{0,2}器|毒品|短信猫|短信注册|二奶|发.{0,2}票|发票|發.{0,2}票|法轮|反动|反共|反华|反中|废水厂|复.{0,2}制.{0,2}手.{0,2}机.{0,2}卡|改分数|干.{0,2}扰.{0,2}器|干扰器|高干子弟|高干子女|高考答案|高丽|高莺莺|供不应求|共产|共狗|官场段子|官员|广东王|汉奸|浩方对站平台活动|虎.{0,2}头.{0,2}牌|户口代办|皇冠|昏药|货到付款|鸡巴|基金|激.{0,2}情.{0,2}裸.{0,2}聊|急聘|假币|假钞|监.{0,2}听.{0,2}器|江氏|解.{0,2}码.{0,2}器|金.{0,2}属.{0,2}探.{0,2}测|禁书|警方|考.{0,2}中.{0,2}答.{0,2}案|考研答案|可儿|刻章|口头检查|老.{0,2}虎.{0,2}机|立即申请|两会|猎.{0,2}枪|猎枪|领导人|流师|留学必备|六.{0,2}閤.{0,2}彩|六.{0,2}合.{0,2}彩|六合|六级答案|露点|乱交|论.{0,2}坛.{0,2}代.{0,2}发.{0,2}帖|论.{0,2}坛.{0,2}群.{0,2}发|裸体|麻.{0,2}果|麻.{0,2}醉.{0,2}枪|麻醉|马克杯|马上体验|毛派|毛片|玫瑰园|美国空间|迷.{0,2}幻.{0,2}药|迷.{0,2}药|迷药|免.{0,2}费.{0,2}淫|免费空间|尿道|女优|拍.{0,2}肩|批发|迫害|签证|枪.{0,2}支|枪手|抢奖|情色|情欲|群发|热线|人民报|日赚|赛马|三.{0,2}唑.{0,2}仑|三级片|色.{0,2}色.{0,2}成.{0,2}人|色情|杀人|上.{0,2}分.{0,2}器|上.{0,2}门.{0,2}服.{0,2}务|上门服务|时代互联|饰品|收款|手.{0...”－ 无法识别的转义序列 \考。
+   在 System.Text.RegularExpressions.RegexParser.ScanCharEscape()
+   在 System.Text.RegularExpressions.RegexParser.ScanBasicBackslash()
+   在 System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   在 System.Text.RegularExpressions.RegexParser.ScanRegex()
+   在 System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   在 System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   在 System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern)
+   在 CZBK.BookShop.BLL.BooksService.CheckModWord(String msg) 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.BLL\BooksService.cs:行号 73
+   在 CZBK.BookShop.WebUi.Controllers.BookListController.AddComment() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\BookListController.cs:行号 39
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 12:06:20,710 [58] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.132:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2014-10-22 12:06:20,809 [58] ERROR Memcached.ClientLibrary.SockIOPool - Failed to create connection to: 10.0.0.132:11211 -- only 0 created
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+2014-10-22 16:50:48,977 [22] ERROR errorMsg - System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 CZBK.BookShop.WebUi.Controllers.SearchController.SearchIndexContent() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\SearchController.cs:行号 75
+   在 CZBK.BookShop.WebUi.Controllers.SearchController.SearchContent() 位置 d:\传智讲课\0721班\第十一天\CZBK.BookShop\CZBK.BookShop.WebUi\Controllers\SearchController.cs:行号 31
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+----------------------footer--------------------------
+
+----------------------header--------------------------
+
+----------------------footer--------------------------

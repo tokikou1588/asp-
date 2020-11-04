@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>C++程序设计教程（第二版）</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4947 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4947 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4947 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>C++程序设计教程（第二版）</td></tr>
+        <tr><td>作者</td><td>钱能  著</td></tr>
+        <tr><td>单价</td><td>39.50 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/9787302114642.jpg" /></td></tr>
+          <tr><td>目录</td><td>第一部分　基础编程<BR>第1章 概述<BR>1.1 程序设计语言<BR>　1.2 C++前史<BR>　1.3 C++<BR>　1.3.1 褒贬C <BR>　1.3.2 C继承者<BR>　1.3.3 标准C++ <BR>　1.4 C++编程流程<BR>　1.4.1 编程过程 <BR>　1.4.2 最小样板程序<BR>　1.4.3 编程风格<BR>　1.5 程序与算法<BR>　1.5.1 程序<BR>　1.5.2 算法<BR>　1.5.3 编程与结构<BR>　1.6 过程化程序设计<BR>　 1.6.1 基于过程的程序设计<BR>　1.6.2 结构化程序设计<BR>　1.7 对象化程序设计<BR>　 1.7.1 基于对象的程序设计<BR>　1.7.2 面向对象的程序设计<BR>　1.8 目的归纳<BR>　 1.9 练习1<BR>第2章 基本编程语句<BR>　2.1 说明语句<BR>　 2.1.1 变量定义<BR>　 2.1.2 函数声明和定义<BR>　2.1.3 初始化与赋值<BR>　2.2 条件语句<BR>　 2.2.1 if语句<BR>　2.2.2 条件表达式<BR>　 2.2.3 switch语句<BR>　 2.2.4 if或switch语句<BR>　2.3 循环语句<BR>　 2.3.1 for循环结构 <BR>　 2.3.2 for循环<BR>　 2.3.3 while循环<BR>　 2.4 循环设计<BR>　 2.4.1 字符图形<BR>　 2.4.2 素数判定<BR>　 2.5 输入输出语句<BR>　 2.5.1 标准I/O流<BR>　 2.5.2 流状态<BR>　 2.5.3 文件流<BR>　2.6 转移语句<BR>　 2.6.1 break语句<BR>　2.6.2 continue语句<BR>　2.7 再做循环设计<BR>　 2.7.1 逻辑判断<BR>　 2.7.2 级数逼近<BR>　2.8 目的归纳<BR>　2.9 练习2<BR>　第3章 数据类型<BR>　 3.1 整型 <BR>　 1.3.1 二进制补码<BR>　 1.3.2 整型数表示范围<BR>　1.3.3 编译器与整数长度<BR>　1.3.4 整数字面值<BR>　 1.3.5 整数算术运算<BR>　3.2 整数子类<BR>　 3.2.1 字符型 <BR>　 3.2.2 枚举型<BR>　 3.2.3 布尔型<BR>　3.3 浮点型 <BR>　 3.3.1 浮点数表示 <BR>　 3.3.2 浮点型表示范围<BR>　3.4 C-串与string<BR>……<BR>　第4章 计算表达<BR>第二部分 过程化编程<BR>　第5章 函数机制<BR>　第6章 性能<BR>　第7章 程序结构<BR>第三部分 面向对象编程技术<BR>　第8章 类<BR>　第9章 对象生灭<BR>　第10章 继承<BR>　第11章 基于对象编程<BR>第四部分 高级编程<BR>　第12章 多态<BR>　第13章 抽象类<BR>　第14章 模板<BR>　第15章 异常<BR>附录<BR>　附录A 语法导读<BR>　附录B 标准模板库导用<BR>　附录C 参考文献</td></tr>
+          <tr><td>内容简介</td><td>本书是《C++程序设计教程》的第二版。然而从指导思想、内容结构、写作特点等方面，都以全新的面貌呈现于读者。全书全部重新执笔，代码全部重写，涵盖了基本C++编程方法的全部技术特征。<br>    本书以C++标准为蓝本，从过程化编程的基本描述，到对象化编程的方法展开，乃至高级编程的实质揭示，形成一条自然流畅的主线，通俗易懂，形象风趣。本书在内容结构上自成体系，并以独特的描述手法，辐射到计算机专业其他诸课程，体系严谨，结构独特。<br>    作者在长期的教学、科研实践以及ACM大学生程序设计竞赛培训工作中，总结出了许多难能可贵的教学经验，能使读者快捷而准确地找到编程技术要领，洞穿C++内部实现要害，直击抽象编程本质。<br>    与本书配套，《C++课程设计指导》、《C++程序设计习题及解答》、《C++程序设计教程详解》和《C++程序设计教程精粹》也将陆续面世。除此之外，还配有C++程序设计教程课件和源代码供读者下载。<br>    本书适用于大学计算机程序设计教学，也适合于立志自学成才的读者，帮助他们从零开始走向高级程序员。本书也旨在引导读者从欣赏C++入门的初级精彩到享受C++经典名作的内在精彩，因而，也是一本软件工作者不可多得的案头参考书。</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

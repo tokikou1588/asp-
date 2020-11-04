@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>$title</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": $bookId }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": $bookId }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": $bookId }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>$title</td></tr>
+        <tr><td>作者</td><td>$author</td></tr>
+        <tr><td>单价</td><td>$unitprice &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/$isbn.jpg" /></td></tr>
+          <tr><td>目录</td><td>$toc</td></tr>
+          <tr><td>内容简介</td><td>$content</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

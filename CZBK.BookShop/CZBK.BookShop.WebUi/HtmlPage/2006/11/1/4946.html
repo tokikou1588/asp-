@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>框架设计（第2版）：CLR Via C#</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4946 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4946 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4946 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>框架设计（第2版）：CLR Via C#</td></tr>
+        <tr><td>作者</td><td>（美）瑞奇特（Richter,J.）  著，周靖，张杰良  译</td></tr>
+        <tr><td>单价</td><td>68.00 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/9787302140160.jpg" /></td></tr>
+          <tr><td>目录</td><td>第Ⅰ部分 CLR基础 <BR>　第1章 CLR的执行模型<BR>　第2章 生成、打包、部署和管理应用程序及类型 <BR>　第3章 共享程序集和强命名程序集<BR>第Ⅱ部分 类型的使用 <BR>　第4章 类型基础<BR>　第5章 基元、引用和值类型 <BR>第Ⅲ部分 类型的设计 <BR>　第6章 类型和成员基础<BR>　第7章 常量和字段<BR>　第8章 方法：构造器、操作符、转换操作符和参数 <BR>　第9章 属性<BR>　第10章 事件<BR>第Ⅳ部分 基本类型 <BR>　第11章 字符、字符串和文本<BR>　第12章 枚举类型和位标志<BR>　第13章 数组<BR>　第14章 接口<BR>　第15章 委托<BR>　第16章 泛型<BR>　第17章 自定义属性<BR>　第18章 可空值类型<BR>第Ⅴ部分 CLR实用特性 <BR>　第19章 异常<BR>　第20章 自动内存管理（垃圾收集）<BR>　第21章 CLR寄宿和应用程序域 <BR>　第22章 程序集的加载与反射 <BR>　第23章 执行异步操作<BR>　第24章 线程同步</td></tr>
+          <tr><td>内容简介</td><td>作为深受编程人员爱戴和尊敬的编程专家，微软.NET开发团队的顾问，本书作者Jeffrey Richter针对开发各种应用程序（如Web Form、Windows Form和Web服务、Microsoft SQL Server解决方案、控制台应用程序、NT Service）的开发人员，深入揭示了公共语言运行库（CLR）和.NET Framework.，演示了如何将这些知识应用到实际开发。全书分5部分，共24章。第Ⅰ部分讲述CLR基础，第Ⅱ部分介绍类型的使用，第Ⅲ部分说明类型的设计，第Ⅳ部分介绍基本类型，第Ⅴ部分讲述CLR实用特性。 <br>    通过本书的阅读，读者可以掌握CLR精髓，轻松、高效地创建高性能应用程序。</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

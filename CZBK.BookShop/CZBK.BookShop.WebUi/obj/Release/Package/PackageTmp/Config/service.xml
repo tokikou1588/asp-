@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object type="CZBK.BookShop.BLL.UserInfoService, CZBK.BookShop.BLL" singleton="false" name="UserInfoService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.UsersService, CZBK.BookShop.BLL" singleton="false" name="UserService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.CheckEmailService, CZBK.BookShop.BLL" singleton="false" name="CheckEmailService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.SettingsService, CZBK.BookShop.BLL" singleton="false" name="SettingService" >
+  </object>
+</objects>

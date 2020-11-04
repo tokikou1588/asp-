@@ -1,0 +1,16 @@
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.IBLL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.IBLL.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.DALFactory.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.IDAL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.Model.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\EntityFramework.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.DAL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.DALFactory.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.IDAL.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.Model.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\EntityFramework.xml
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\CZBK.BookShop.DAL.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\obj\Release\CZBK.BookShop.IBLL.csprojResolveAssemblyReference.cache
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\obj\Release\CZBK.BookShop.IBLL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.IBLL\obj\Release\CZBK.BookShop.IBLL.pdb

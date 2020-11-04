@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object type="CZBK.BookShop.BLL.UserInfoService, CZBK.BookShop.BLL" singleton="false" name="UserInfoService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.UsersService, CZBK.BookShop.BLL" singleton="false" name="UserService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.CheckEmailService, CZBK.BookShop.BLL" singleton="false" name="CheckEmailService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.SettingsService, CZBK.BookShop.BLL" singleton="false" name="SettingService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.BooksService, CZBK.BookShop.BLL" singleton="false" name="BookService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.BookCommentService, CZBK.BookShop.BLL" singleton="false" name="BookCommentService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.Articel_WordsService, CZBK.BookShop.BLL" singleton="false" name="Articel_WordService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.SearchDetailsService, CZBK.BookShop.BLL" singleton="false" name="SearchDetailService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.keyWordsRankService, CZBK.BookShop.BLL" singleton="false" name="KeyWordRankService" >
+  </object>
+
+
+  <object type="CZBK.BookShop.BLL.CartService, CZBK.BookShop.BLL" singleton="false" name="CartService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.OrdersService, CZBK.BookShop.BLL" singleton="false" name="OrderService" >
+  </object>
+
+  <object type="CZBK.BookShop.BLL.RoleService, CZBK.BookShop.BLL" singleton="false" name="RoleInfoService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.ActionInfoService, CZBK.BookShop.BLL" singleton="false" name="ActionInfoService" >
+  </object>
+  <object type="CZBK.BookShop.BLL.ActionGroupService, CZBK.BookShop.BLL" singleton="false" name="ActionGroupService" >
+  </object>
+</objects>

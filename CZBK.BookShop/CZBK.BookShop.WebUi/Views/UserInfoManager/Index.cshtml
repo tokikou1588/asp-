@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@section head{
+   @* <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />*@
+    <link href="~/Content/imgareaselect-default.css" rel="stylesheet" />
+    <script src="~/SWFUpload/swfupload.js"></script>
+    <script src="~/SWFUpload/handlers.js"></script>
+   @* <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>*@
+    <script src="~/Scripts/jquery.imgareaselect.min.js"></script>
+    <script type="text/javascript">
+        var swfu;
+        window.onload = function () {
+            swfu = new SWFUpload({
+                // Backend Settings
+                upload_url: "/UserInfoManager/FileUpload",
+                post_params: {
+                    "ASPSESSID": "@Session.SessionID"
+                },
+
+                // File Upload Settings
+                file_size_limit: "2 MB",
+                file_types: "*.jpg;*.gif",
+                file_types_description: "JPG Images",
+                file_upload_limit: 0,    // Zero means unlimited
+
+                // Event Handler Settings - these functions as defined in Handlers.js
+                //  The handlers are not part of SWFUpload but are part of my website and control how
+                //  my website reacts to the SWFUpload events.
+                swfupload_preload_handler: preLoad,
+                swfupload_load_failed_handler: loadFailed,
+                file_queue_error_handler: fileQueueError,
+                file_dialog_complete_handler: fileDialogComplete,
+                upload_progress_handler: uploadProgress,
+                upload_error_handler: uploadError,
+                upload_success_handler: showData,
+                upload_complete_handler: uploadComplete,
+
+                // Button settings
+                button_image_url: "/SWFUpload/images/XPButtonNoText_160x22.png",
+                button_placeholder_id: "spanButtonPlaceholder",
+                button_width: 160,
+                button_height: 22,
+                button_text: '<span class="button">请选择上传图片<span class="buttonSmall">(2 MB Max)</span></span>',
+                button_text_style: '.button { font-family: Helvetica, Arial, sans-serif; font-size: 14pt; } .buttonSmall { font-size: 10pt; }',
+                button_text_top_padding: 1,
+                button_text_left_padding: 5,
+
+                // Flash Settings
+                flash_url: "/SWFUpload/swfupload.swf",	// Relative to this file
+                flash9_url: "/SWFUpload/swfupload_FP9.swf",	// Relative to this file
+
+                custom_settings: {
+                    upload_target: "divFileProgressContainer"
+                },
+
+                // Debug Settings
+                debug: false
+            });
+        }
+        //上传成功以后执行该方法。
+        
+        function showData(file, serverData) {
+            //alert(serverData);
+           var  data = serverData.split(':');
+            if (data[0] == "ok") {
+                //$("#imgSrc").attr("src",data[1]);
+                //$("#divContent").css("backgroundImage","url("+data[1]+")").css("width",data[2]+"px").css("height",data[3]+"px");
+                $("#selectbanner").attr("src", data[1]);
+                $('#selectbanner').imgAreaSelect({
+                    selectionColor: 'blue', x1: 0, y1: 0, x2: 100,
+                  y2: 100,  selectionOpacity: 0.2, onSelectEnd: preview
+                });
+            } else {
+                alert(data[1]);
+            }
+        }
+        $(function () {
+            //$("#divCut").draggable({ containment: "parent" });
+            //$("#divCut").resizable({
+            //    containment: "parent"
+            //});
+            $("#btnCut").click(function () {
+                cutPhoto();
+            });
+        })
+        //截取头像
+        function cutPhoto() {
+            //var x = $("#divCut").offset().left - $("#divContent").offset().left;//横坐标
+            //var y = $("#divCut").offset().top - $("#divContent").offset().top;
+            //var width = $("#divCut").width();
+            //var height = $("#divCut").height();
+          
+            //var pars = {
+            //    x:parseInt(x),
+            //    y: parseInt(y),
+            //    width: parseInt(width),
+            //    height: parseInt(height),
+            //    imgUrl:data[1]
+            //};
+            var pars = {
+                x: $('#selectbanner').data('x'),
+
+                y: $('#selectbanner').data('y'),
+
+                width: $('#selectbanner').data('w'),
+
+                height: $('#selectbanner').data('h'),
+                imgUrl: $('#selectbanner').attr("src")
+            };
+            $.post("/UserInfoManager/CutPhoto", pars, function (data) {
+                $("#imgSrc").attr("src",data);
+            });
+        }
+        //选择结束以后调用该方法。
+        function preview(img, selection) {
+
+            $('#selectbanner').data('x', selection.x1);
+
+            $('#selectbanner').data('y', selection.y1);
+
+            $('#selectbanner').data('w', selection.width);
+
+            $('#selectbanner').data('h', selection.height);
+
+        }
+	</script>
+}
+	<div id="content">
+	    <div id="swfu_container" style="margin: 0px 10px;">
+		    <div>
+                aaaa
+				<span id="spanButtonPlaceholder"></span>
+                aaaa
+		    </div>
+            vvvv
+		    <div id="divFileProgressContainer" style="height: 75px;"></div>
+            vvvv
+		    <div id="thumbnails"></div>
+        
+           @* <div id="divContent" style="width:300px;height:300px">
+                <div id="divCut" style="width:100px;height:100px;border:1px solid red"></div>
+            </div>*@
+            <img id="selectbanner" />
+            <input type="button" value="头像截取" id="btnCut" />
+            <br />
+                <img id="imgSrc" />
+	    </div>
+		</div>

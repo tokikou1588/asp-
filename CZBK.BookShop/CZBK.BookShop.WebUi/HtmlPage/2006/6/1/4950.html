@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Visual C# 2005从入门到精通</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4950 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4950 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4950 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>Visual C# 2005从入门到精通</td></tr>
+        <tr><td>作者</td><td>（英）夏普  著，周靖  译</td></tr>
+        <tr><td>单价</td><td>49.00 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/9787302131007.jpg" /></td></tr>
+          <tr><td>目录</td><td>第I部分  Microsoft Visual C#和Microsoft Visual Studio 2005概述<br>  第1章 欢迎进入C#编程世界<br>  第2章 使用变量、操作符和表达式<br>  第3章 方法和作用域<br>  第4章 使用决策语句<br>  第5章 使用复合赋值和循环语句<br>  第6章  管理错误和异常<br>第II部分  理解C#语言<br>  第7章 创建并管理类和对象<br>  第8章 理解值和引用<br>  第9章 使用枚举和结构来创建值类型<br>  第10章 使用数组和集合<br>  第11章 理解参数数组<br>  第12章 使用继承<br>  第13章 使用垃圾回收和资源管理<br>第III部分  创建组件<br>  第14章 实现Property（属性）<br>  第15章 使用索引器<br>  第16章 委派和事件<br>  第17章 泛型概述<br>  第18章 枚举集合<br>  第19章 操作符重载<br>第IV部分  操纵Windows应用程序<br>  第20章 Windows窗体概述<br>  第21章 使用菜单和对话框<br>  第22章 执行校验<br>第V部分  管理数据<br>  第23章 使用数据库<br>  第24章 使用数据绑定和DataSet<br>第VI部分  构建Web应用程序<br>  第25章 ASP.NET概述<br>  第26章 理解Web窗体校验控件<br>  第27章 保护网站并使用Web窗体访问数据<br>  第28章 创建和使用Web服务</td></tr>
+          <tr><td>内容简介</td><td>Microsoft Visual C#功能强大、使用简单。本书全面介绍了如何利用Visual Studio2005和NET Framework来进行C#编程。作者将C#的各种特性娓娓道来，以范例导航的方式，通过大量的练习引导读者逐步构建Windows窗体应用程序，访问MicrosoftSQL Server数据库，开发ASP.NETWeb应用程序以及创建并使用Web服务。<br>    全书共6部分，28章，结构清晰、叙述清楚。所有练习均在Visual Studio2005简体中文版上进行过演练。无论是刚开始接触面向对象编程的新手，还是打算转移到C#的有经验的C、C++或者Java程序员，都可以从本书中汲取到新的知识。</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

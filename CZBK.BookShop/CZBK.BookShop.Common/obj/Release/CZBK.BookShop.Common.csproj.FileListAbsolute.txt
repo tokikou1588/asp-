@@ -1,0 +1,5 @@
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Common\bin\Release\CZBK.BookShop.Common.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Common\bin\Release\CZBK.BookShop.Common.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Common\obj\Release\CZBK.BookShop.Common.csprojResolveAssemblyReference.cache
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Common\obj\Release\CZBK.BookShop.Common.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Common\obj\Release\CZBK.BookShop.Common.pdb

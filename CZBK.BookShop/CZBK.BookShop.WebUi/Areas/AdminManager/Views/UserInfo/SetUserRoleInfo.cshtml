@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.BookShop.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为用户分配角色</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#form1").submit();
+        }
+        function afterSet(data) {
+            if (data == "ok") {
+                window.parent.afterSetRole();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为用户@{
+            UserInfo userInfo = (UserInfo)ViewData["userInfo"];
+            @userInfo.UserName
+        }分配角色
+    </div>
+    <div>
+        @{
+            using(Ajax.BeginForm("SetUserRoleInfo",new{},new AjaxOptions(){ HttpMethod="post", OnSuccess="afterSet"},new{id="form1"})){
+                <input type="hidden" name="userId" value="@userInfo.ID" />
+            List<Role>roleList=(List<Role>)ViewData["roleInfoList"];
+            List<int> userExtRoleIdList = (List<int>)ViewData["userExtRoleIdList"];
+            foreach(Role roleInfo in roleList)
+            {
+                var checkName="cba_"+roleInfo.ID;
+                if(userExtRoleIdList.Contains(roleInfo.ID)){
+                <input type="checkbox"  name="@checkName"  value="@roleInfo.ID" checked="checked" />@roleInfo.RoleName
+                }else{
+                <input type="checkbox" value="@roleInfo.ID" name="@checkName" />@roleInfo.RoleName
+                }
+            }
+            }
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@using CZBK.BookShop.Model
+@using CZBK.BookShop.Common
+@section head{
+    <link href="~/Content/PageBar.css" rel="stylesheet" />
+}
+@if(ViewData["bookList"]!=null)
+{
+    foreach(var book in (List<Books>)ViewData["bookList"])
+    {
+<TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD rowSpan=2><a href="@string.Format("{0}{1}.html",WebCommon.GetDir(book.PublishDate),book.Id)" 
+                       ><IMG 
+                        id=ctl00_cphContent_dl_Books_ctl01_imgBook 
+                        style="CURSOR: hand" height=121 
+                        alt="@book.Title" hspace=4 
+                        src="@string.Format("/Images/BookCovers/{0}.jpg",book.ISBN)" width="95"></a> 
+</TD>
+                      <TD style="FONT-SIZE: small; COLOR: red" width=650><A 
+                        class=booktitle id=link_prd_name 
+                        href="@string.Format("{0}{1}.html",WebCommon.GetDir(book.PublishDate),book.Id)" target="_blank" 
+                        name=link_prd_name>@book.Title</A> 
+</TD></TR>
+                    <TR>
+                      <TD align=left><SPAN 
+                        style="FONT-SIZE: 12px; LINE-HEIGHT: 20px">@book.Author</SPAN><BR><BR><SPAN 
+                        style="FONT-SIZE: 12px; LINE-HEIGHT: 20px">@WebCommon.CutString(book.ContentDescription,150)</SPAN> 
+                    </TD></TR>
+                    <TR>
+                      <TD align=right colSpan=2><SPAN 
+                        style="FONT-WEIGHT: bold; FONT-SIZE: 13px; LINE-HEIGHT: 20px">&yen; 
+                       @book.UnitPrice.ToString("0.00")</SPAN> </TD></TR></TBODY></TABLE>
+    <hr />
+}
+<p class="page_nav">
+    @MvcHtmlString.Create(PageBar.CreatePageBar((int)ViewData["pageIndex"], (int)ViewData["pageCount"]))
+</p>
+}

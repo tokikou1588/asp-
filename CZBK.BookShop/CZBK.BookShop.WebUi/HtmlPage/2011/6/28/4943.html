@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Effective C# 中文版改善C#程序的55种方法</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4943 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4943 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4943 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>Effective C# 中文版改善C#程序的55种方法</td></tr>
+        <tr><td>作者</td><td>（中）瓦格纳  著，李建忠  译</td></tr>
+        <tr><td>单价</td><td>120.00 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/978711515888.jpg" /></td></tr>
+          <tr><td>目录</td><td><P><FONT style="COLOR: #ff0000">第1章 C#语言元素<BR></FONT>　条款1：使用属性代替可访问的数据成员<BR>　条款2：运行时常量（readonly）优于编译时常量（const）<BR>　条款3：操作符is或as优于强制转型<BR>　条款4：使用Conditional特性代替#if条件编译<BR>　条款5：总是提供ToString()方法<BR>　条款6：明辨值类型和引用类型的使用场合<BR>　条款7：将值类型尽可能实现为具有常量性和原子性的类型<BR>　条款8：确保0为值类型的有效状态<BR>　条款9：理解几个相等判断之间的关系<BR>　条款10：理解GetHashCode()方法的缺陷<BR>　条款11：优先采用foreach循环语句<BR>第2章 .NET资源管理<BR>　条款12：变量初始化器优于赋值语句<BR>　条款13：使用静态构造器初始化静态类成员<BR>　条款14：利用构造器链<BR>　条款15：利用using和try/finally语句来清理资源<BR>　条款16：尽量减少内存垃圾<BR>　条款17：尽量减少装箱与拆箱<BR>　条款18：实现标准Dispose模式<BR>第3章 使用C#表达设计<BR>　条款19：定义并实现接口优于继承类型<BR>　条款20：明辨接口实现和虚方法重写<BR>　条款21：使用委托表达回调<BR>　条款22：使用事件定义外发接口<BR>　条款23：避免返回内部类对象的引用<BR>　条款24：声明式编程优于命令式编程<BR>　条款25：尽可能将类型实现为可序列化的类型<BR>　条款26：使用IComparable和IComparer接口实现排序关系<BR>　条款27：避免ICloneable接口<BR>　条款28：避免强制转换操作符<BR>　条款29：只有当新版基类导致问题时才考虑使用new修饰符<BR>第4章 创建二进制组件<BR>　条款30：尽可能实现CLS兼容的程序集<BR>　条款31：尽可能实现短小简洁的函数<BR>　条款32：尽可能实现小尺寸、高内聚的程序集<BR>　条款33：限制类型的可见性<BR>　条款34：创建大粒度的Web API<BR>第5章 使用框架<BR>　条款35：重写优于事件处理器<BR>　条款36：合理使用.NET运行时诊断<BR>　条款37：使用标准配置机制<BR>　条款38：定制和支持数据绑定<BR>　条款39：使用.NET验证<BR>　条款40：根据需要选用恰当的集合<BR>　条款41：DataSet优于自定义结构<BR>　条款42：利用特性简化反射<BR>　条款43：避免过度使用反射<BR>　条款44：为应用程序创建特定的异常类<BR>第6章 杂项讨论<BR>　条款45：优先选择强异常安全保证<BR>　条款46：最小化互操作<BR>　条款47：优先选择安全代码<BR>　条款48：掌握相关工具与资源<BR>　条款49：为C# 2.0做准备<BR>　条款50：了解ECMA标准<BR>索引</P></td></tr>
+          <tr><td>内容简介</td><td>本书围绕一些关于C#和.NET的重要主题，包括C#语言元素、.NET资源管理、使用C#表达设计、创建二进制组件和使用框架等，讲述了最常见的50个问题的解决方案，为程序员提供了改善C#和.NET程序的方法。本书通过将每个条款构建在之前的条款之上，并合理地利用之前的条款，来让读者最大限度地学习书中的内容，为其在不同情况下使用最佳构造提供指导。<br>　　本书适合各层次的C#程序员阅读，同时可以推荐给高校教师（尤其是软件学院教授C#/.NET课程的老师），作为C#双语教学的参考书。</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

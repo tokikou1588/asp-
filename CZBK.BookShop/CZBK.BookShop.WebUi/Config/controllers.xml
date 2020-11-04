@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object type="CZBK.BookShop.WebUi.Controllers.HomeController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Controllers.RegisterController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="UserService" ref="UserService" />
+    <property name="CheckEmailService" ref="CheckEmailService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Controllers.BookListController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="BookService" ref="BookService" />
+    <property name="BookCommentService" ref="BookCommentService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.UserInfoController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+    <property name="RoleInfoService" ref="RoleInfoService" />
+  </object>
+
+  
+  <object type="CZBK.BookShop.WebUi.Controllers.CartController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="BookService" ref="BookService" />
+    <property name="CartService" ref="CartService" />
+   <property name="UserService" ref="UserService" />
+    <property name="OrderService" ref="OrderService" />
+  </object>  
+  
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminBookManagerController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="BookService" ref="BookService" />
+  </object>
+
+  <object type="CZBK.BookShop.WebUi.Controllers.LoginController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="UserService" ref="UserService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Controllers.SearchController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="BookService" ref="BookService" />
+    <property name="SearchDetailService" ref="SearchDetailService" />
+     <property name="KeyWordRankService" ref="KeyWordRankService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminSettingController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="SettingService" ref="SettingService" />
+  </object>
+  
+    <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminRoleInfoController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="RoleInfoService" ref="RoleInfoService" />
+  </object>
+    
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminWordController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="Articel_WordService" ref="Articel_WordService" />
+  </object>
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminActionInfoController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="ActionInfoService" ref="ActionInfoService" />
+  </object>
+
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminLoginController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+  </object>
+  
+  
+  <object type="CZBK.BookShop.WebUi.Areas.AdminManager.Controllers.AdminActionGroupController, CZBK.BookShop.WebUi" singleton="false" >
+    <property name="ActionGroupService" ref="ActionGroupService" />
+    <property name="RoleInfoService" ref="RoleInfoService" />
+  <property name="ActionInfoService" ref="ActionInfoService" />
+  </object>
+  <!--intentionally do NOT register the AccountController or the ValuesController with the container; demonstrates that the underlying
+  default controller factory will properly (attempt to!) resolve all controllers not registered with Spring.NET
+  using its default controller resolution behavoir-->
+  <!--<object type="Spring.Mvc4QuickStart.Controllers.AccountController, Spring.Mvc4QuickStart" singleton="false" />-->
+  <!--<object type="Spring.Mvc4QuickStart.Controllers.ValuesController, Spring.Mvc4QuickStart" singleton="false" />-->
+</objects>

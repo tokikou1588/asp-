@@ -1,0 +1,9 @@
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\CZBK.BookShop.Model.dll.config
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\CZBK.BookShop.Model.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\CZBK.BookShop.Model.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\EntityFramework.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\EntityFramework.xml
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\obj\Release\CZBK.BookShop.Model.csprojResolveAssemblyReference.cache
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\obj\Release\CZBK.BookShop.Model.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.Model\obj\Release\CZBK.BookShop.Model.pdb

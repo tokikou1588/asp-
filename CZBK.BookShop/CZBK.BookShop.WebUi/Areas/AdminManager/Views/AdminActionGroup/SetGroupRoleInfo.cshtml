@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@using CZBK.BookShop.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为权限组分配角色</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#from1").submit();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为权限组
+        @{
+            var groupInfo = (ActionGroup)ViewData["groupInfo"];
+            @groupInfo.GroupName
+        }分配角色
+    </div>
+    <div>
+        @using (Ajax.BeginForm("SetGroupRole", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterSet" }, new { id = "from1" }))
+        {
+            <input type="hidden" name="groupId" value="@groupInfo.ID" />
+            List<Role> roleList = (List<Role>)ViewData["roleInfoList"];
+            List<int> groupExtRoleIdList = (List<int>)ViewData["groupExtRoleIdList"];
+            foreach (var roleInfo in roleList)
+            {
+                var checkName = "cba_" + roleInfo.ID;
+                if (groupExtRoleIdList.Contains(roleInfo.ID))
+                {
+                    <input type="checkbox" name="@checkName" checked="checked" value="@roleInfo.ID" />@roleInfo.RoleName
+                }
+                else
+                {
+                    <input type="checkbox" name="@checkName" value="@roleInfo.ID" />@roleInfo.RoleName
+                }
+            }
+        }
+    </div>
+</body>
+</html>

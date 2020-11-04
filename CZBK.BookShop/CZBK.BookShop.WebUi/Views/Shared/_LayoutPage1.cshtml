@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>北京市新华书店王府井书店 - 网上书店80折起，购书满99元免运费！</title>
+<meta content="北京市新华书店王府井书店，致力于提供专业化购书服务.网上购书选择新华书店王府井书店(网上书店),购书放心有保障.王府井书店电话:010-65132842.010-65252592" name="description"/>
+<meta content="王府井书店 新华书店 网上书店 网上购书 北京图书大厦" name="keywords">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<link href="/css/index.css" rel="stylesheet" type="text/css">
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+   @RenderSection("head", false)
+
+</head>
+<body > 
+<center>
+
+<div class="top">
+	<div class="m_c" style="width: 736px; height: 27px">
+	<span class="l">
+      <a href="http://www.beifabook.com" target="_blank">北发图书网主网站</a> |&nbsp;
+      <a href="http://www.bjbb.com" target="_blank">北京图书大厦</a>&nbsp; |
+      <a href="../default.aspx" target="_blank"><font color="#00A0E9">王府井书店</font></a>&nbsp;|
+      <a href="http://www.zgcbb.com/" target="_blank">中关村图书大厦</a>&nbsp; |
+      <a href="http://www.yycbook.com/" target="_blank">亚运村图书大厦</a>&nbsp; |
+      <a href="http://www.hs-book.com" target="_blank">花市书店</a>&nbsp; |
+	  <a href="/OrderInfo.aspx" >我的订单</a>
+           @using CZBK.BookShop.Common
+    @using CZBK.BookShop.Model
+    @using CZBK.BookShop.IBLL
+    @{
+        if(Request.Cookies["sessionId"]==null)
+        {
+            if(Request.Cookies["cp1"]!=null&&Request.Cookies["cp2"]!=null)
+            {
+                string name = Request.Cookies["cp1"].Value;
+                string pwd = Request.Cookies["cp2"].Value;
+                Spring.Context.IApplicationContext ctx = Spring.Context.Support.ContextRegistry.GetContext();
+                IUsersService UserService = (IUsersService)ctx.GetObject("UserService");
+                var user = UserService.LoadEntities(u => u.LoginId == name).FirstOrDefault();
+                if (user != null)
+                {
+                    if (pwd == WebCommon.Md5String(WebCommon.Md5String(user.LoginPwd)))
+                    {
+                        // Session["userInfo"] = user;
+                        string sessionId = Guid.NewGuid().ToString();
+                       MemcacheHelper.Set(sessionId, SerializeHelper.SerializeToString(user), DateTime.Now.AddMinutes(20));
+                        Response.Cookies["sessionId"].Value = sessionId;
+                         <span style="font-size:14px;color:blue">欢迎 @user.LoginId 登录</span>
+           <a href="/Login/LogOut/?currentUrl=@Request.Url.ToString()">退出</a>
+                      
+                    }
+                    else
+                    {
+                        Response.Cookies["cp1"].Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies["cp2"].Expires = DateTime.Now.AddDays(-1);
+                           <a href="/Login/Index">登录</a>
+                        
+                    }
+                }
+                else
+                {
+                
+                Response.Cookies["cp1"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["cp2"].Expires = DateTime.Now.AddDays(-1);
+                       <a href="/Login/Index">登录</a>
+                }
+
+                 
+            }
+            else
+            {
+                  <a href="/Login/Index">登录</a>
+            }
+        }
+        else//表示自己建的SessionId有值
+        {
+            string sessionId = Request.Cookies["sessionId"].Value;
+            object obj=MemcacheHelper.Get(sessionId);
+            if(obj==null)//缓存过期了
+            {
+                <a href="/Login/Index">登录</a>
+            }
+            else
+            {
+               var user= SerializeHelper.DeserializeToObject<Users>(obj.ToString());
+               MemcacheHelper.Set(sessionId, obj, DateTime.Now.AddMinutes(20));
+               <span style="font-size:14px;color:blue">欢迎 @user.LoginId 登录</span>
+           <a href="/Login/LogOut/?currentUrl=@Request.Url.ToString()">退出</a>
+            }
+        }
+        
+    }
+
+
+
+	</span></div></div>
+ 
+
+	<div style="WIDTH: 750px; text-align: left;"><img src="/images/集团网站1.jpg" width="780" height="93" /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;         </div>
+
+
+<div id="main_box">
+   @RenderBody()
+    </div>
+<div id="footer">
+  <table border="0" width="100%" class="categories1">
+    <tr>
+      <td align="center">　
+        <ul>
+            <li><a href='#'>关于我们王府井书店</li>
+          <li><a href="#">书店营业时间：9：30-21：00 </a> </li>
+          <li> <a href="#"; target=_blank; ><img src="/images/logo123x40.jpg" width="123" height="40" border="0"></a> <a href="#"; target=_blank; ><img border="0" src="/Images/kaixin.jpg"></a> </li>
+          <li>&nbsp;<span lang="zh-cn"><a title="京ICP备08001692号" href="http://www.miibeian.gov.cn">京ICP备08987373号</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+
+</center>
+
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestSeo</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script  type="text/javascript">
+        $(function () {
+            $("#a1").click(function () {
+                $.post('/Test/Test2/', {"id":1}, function (data) {
+                    $("#div1").append(data);
+                   
+                });
+                return false;
+            });
+          
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <a href="/Test/Test2/?id=1" id="a1">美女</a>
+        <div id="div1">
+
+        </div>
+    </div>
+</body>
+</html>

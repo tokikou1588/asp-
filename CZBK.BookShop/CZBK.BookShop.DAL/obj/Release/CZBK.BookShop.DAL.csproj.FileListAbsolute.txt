@@ -1,0 +1,12 @@
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.DAL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.DAL.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.IDAL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.Model.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\EntityFramework.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.IDAL.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\CZBK.BookShop.Model.pdb
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\EntityFramework.xml
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\obj\Release\CZBK.BookShop.DAL.csprojResolveAssemblyReference.cache
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\obj\Release\CZBK.BookShop.DAL.dll
+D:\传智讲课\0721班\第七天\CZBK.BookShop\CZBK.BookShop.DAL\obj\Release\CZBK.BookShop.DAL.pdb

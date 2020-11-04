@@ -1,0 +1,126 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <style type="text/css">
+        .txt {
+        font-size:14px;
+        float:right;
+        margin-right:20px;
+        margin-top:15px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            bindMenuItmes();
+            //bindEvent();
+        });
+        function bindMenuItmes() {
+            //判断登录用户有哪些菜单权限
+            $.post("/AdminManager/AdminHome/GetMenuItem", {}, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#MenuItemId").accordion(
+                        'add', {
+                            title: data[i].GroupName,
+                            content:createMenuItem(data[i])
+                        }
+                        );
+                }
+                bindEvent();
+            });
+        }
+        //创建菜单项
+        function createMenuItem(serverData) {
+            var strHtml = "";
+            for (var i = 0; i < serverData.MenuItems.length; i++) {
+                strHtml = strHtml + '<div title=' + serverData.MenuItems[i].ActionName + 'style="padding:10px;"><a href="javascript:void(0)" class="DetailLink123" url=' + serverData.MenuItems[i].Url + '>' + serverData.MenuItems[i].ActionName + '</a></div>';
+            }
+            return strHtml;
+        }
+        //绑定链接单击事件
+        function bindEvent() {
+            $(".DetailLink123").click(function () {
+                var url = $(this).attr("url");
+                var title = $(this).text();
+                var isExt = $('#tt').tabs('exists', title);//根据标题判断页签是否存在.
+                if (isExt) {
+                    $('#tt').tabs('select', title);//如果存在让页签选中
+                    return;
+                }
+                $('#tt').tabs('add', {
+                    title: title,
+                    content: addContent(url),
+                    closable: true
+                });
+
+            });
+        }
+        function addContent(url) {
+            var strHtml = '<iframe src="' + url + '" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>';
+            return strHtml;
+        }
+    </script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="height:71px;background:#B3DFDA;padding:10px; overflow:hidden; background-image:url(/Images/3.jpg)">
+        <img src="/Images/logo.gif" />
+           <span class="txt">欢迎Admin登录</span>
+	</div>
+
+
+	<div data-options="region:'west',split:true,title:'West'" style="width:150px;padding:3px;">
+        <div class="easyui-accordion" data-options="multiple:true" style="width:auto;height:auto;" id="MenuItemId">
+		<div title="用户管理" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+		<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/UserInfo/Index">用户管理</a>
+		</div>
+
+              <div title="角色管理" style="padding:10px;">
+            	<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminRoleInfo/Index">角色管理</a>
+		</div>
+		
+               <div title="权限管理" style="padding:10px;">
+            	<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminActionInfo/Index">权限管理</a>
+		</div>
+		   <div title="权限组管理" style="padding:10px;">
+            	<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminActionGroup/Index">权限组管理</a>
+		</div>
+		
+
+		<div title="配置管理" style="padding:10px;">
+			<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminSetting/Index">配置管理</a>
+		</div>
+			<div title="图书管理" style="padding:10px;">
+			<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminBookManager/Index">图书管理</a>
+		</div>
+            <div title="词库管理" style="padding:10px;">
+            	<a href="javascript:void(0)" class="DetailLink123" url="/AdminManager/AdminWord/Index">词库管理</a>
+		</div>
+	</div>
+
+
+	</div>
+
+	<div data-options="region:'south',border:false" style="height:20px;background:#A9FACD;padding:3px; text-align:center">版权所有&copy;传智播客</div>
+	<div data-options="region:'center',title:'Center'">
+        <div class="easyui-tabs" style="width:700px;height:250px" fit="true" id="tt">
+		<div title="用户管理" style="padding:10px" data-options="closable:true">
+			    <iframe src="/AdminManager/UserInfo/Index" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+		</div>
+		
+	</div>
+
+	</div>
+</body>
+
+</html>

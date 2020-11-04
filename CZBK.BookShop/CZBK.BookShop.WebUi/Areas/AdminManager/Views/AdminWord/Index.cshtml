@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function afterAdd(data) {
+            if (data == "ok") {
+                alert("词库添加成功");
+                $("#txtCode").val("");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        @using (Ajax.BeginForm("AddCode", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "form1"}))
+        {
+            
+           <textarea name="txtCode" rows="20" cols="40" id="txtCode"></textarea>
+            <input type="submit" value="添加" />
+        }
+    </div>
+</body>
+</html>

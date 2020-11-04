@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowEdit</title>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/SWFUpload/swfupload.js"></script>
+    <script src="~/SWFUpload/handlers.js"></script>
+      <script type="text/javascript">
+          var swfu;
+          window.onload = function () {
+              swfu = new SWFUpload({
+                  // Backend Settings
+                  upload_url: "/UserInfoManager/FileUpload",
+                  post_params: {
+                      "ASPSESSID": "@Session.SessionID"
+                },
+
+                // File Upload Settings
+                file_size_limit: "2 MB",
+                file_types: "*.jpg;*.gif",
+                file_types_description: "JPG Images",
+                file_upload_limit: 0,    // Zero means unlimited
+
+                // Event Handler Settings - these functions as defined in Handlers.js
+                //  The handlers are not part of SWFUpload but are part of my website and control how
+                //  my website reacts to the SWFUpload events.
+                swfupload_preload_handler: preLoad,
+                swfupload_load_failed_handler: loadFailed,
+                file_queue_error_handler: fileQueueError,
+                file_dialog_complete_handler: fileDialogComplete,
+                upload_progress_handler: uploadProgress,
+                upload_error_handler: uploadError,
+                upload_success_handler: showData,
+                upload_complete_handler: uploadComplete,
+
+                // Button settings
+                button_image_url: "/SWFUpload/images/XPButtonNoText_160x22.png",
+                button_placeholder_id: "spanButtonPlaceholder",
+                button_width: 160,
+                button_height: 22,
+                button_text: '<span class="button">请选择上传图片<span class="buttonSmall">(2 MB Max)</span></span>',
+                button_text_style: '.button { font-family: Helvetica, Arial, sans-serif; font-size: 14pt; } .buttonSmall { font-size: 10pt; }',
+                button_text_top_padding: 1,
+                button_text_left_padding: 5,
+
+                // Flash Settings
+                flash_url: "/SWFUpload/swfupload.swf",	// Relative to this file
+                flash9_url: "/SWFUpload/swfupload_FP9.swf",	// Relative to this file
+
+                custom_settings: {
+                    upload_target: "divFileProgressContainer"
+                },
+
+                // Debug Settings
+                debug: false
+            });
+        }
+        //上传成功以后执行该方法。
+
+        function showData(file, serverData) {
+            //alert(serverData);
+            var data = serverData.split(':');
+            if (data[0] == "ok") {
+                // Get the editor instance that we want to interact with.
+                var oEditor = CKEDITOR.instances.editor1;
+                var img = "<img src="+data[1]+">";
+                // Check the active editing mode.
+                if (oEditor.mode == 'wysiwyg') {
+                    // Insert HTML code.
+                    // http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.editor.html#insertHtml
+                    oEditor.insertHtml(img);
+                }
+                else
+                    alert('You must be in WYSIWYG mode!');
+
+            } else {
+                alert(data[1]);
+            }
+        }
+       
+       
+	</script>
+</head>
+<body>
+    <div>
+        <form method="post" action="/Test/GetEdit">
+          <textarea cols="100" id="editor1" name="editor1" rows="10"></textarea>
+
+		<script type="text/javascript">
+		//<![CDATA[
+			// Replace the <textarea id="editor1"> with an CKEditor instance.
+			var editor = CKEDITOR.replace( 'editor1' );
+		//]]>
+		</script>
+      <input type="submit" value="提交" />
+            </form>
+    </div>
+
+    <div id="content">
+	    <div id="swfu_container" style="margin: 0px 10px;">
+		    <div>
+				<span id="spanButtonPlaceholder"></span>
+		    </div>
+		    <div id="divFileProgressContainer" style="height: 75px;"></div>
+	    </div>
+		</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\CZBK.BookShop.WebServiceDemo.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\CZBK.BookShop.WebServiceDemo.pdb
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\CZBK.BookShop.Model.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\EntityFramework.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\Newtonsoft.Json.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\EntityFramework.xml
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\Newtonsoft.Json.pdb
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\Newtonsoft.Json.xml
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\zh-Hans\EntityFramework.resources.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\obj\Debug\CZBK.BookShop.WebServiceDemo.csprojResolveAssemblyReference.cache
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\obj\Debug\CZBK.BookShop.WebServiceDemo.dll
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\obj\Debug\CZBK.BookShop.WebServiceDemo.pdb
+D:\传智讲课\0721班\第十七天\CZBK.BookShop\CZBK.BookShop.WebServiceDemo\bin\CZBK.BookShop.Model.pdb

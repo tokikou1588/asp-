@@ -1,0 +1,155 @@
+﻿@model CZBK.BookShop.Model.Books
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAddInfo</title>
+     <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function afterAdd(data) {
+            window.parent.afterAdd(data);
+        }
+        function SubForm() {
+            $("#form1").submit();
+        }
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("AddBookInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterAdd" }, new {id="form1"}))
+    {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Books</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Author)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Author)
+                @Html.ValidationMessageFor(model => model.Author)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PublisherId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PublisherId)
+                @Html.ValidationMessageFor(model => model.PublisherId)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PublishDate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PublishDate)
+                @Html.ValidationMessageFor(model => model.PublishDate)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ISBN)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ISBN)
+                @Html.ValidationMessageFor(model => model.ISBN)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.WordsCount)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.WordsCount)
+                @Html.ValidationMessageFor(model => model.WordsCount)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UnitPrice)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UnitPrice)
+                @Html.ValidationMessageFor(model => model.UnitPrice)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContentDescription)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContentDescription)
+                @Html.ValidationMessageFor(model => model.ContentDescription)
+
+                  <script type="text/javascript">
+                      //<![CDATA[
+                      // Replace the <textarea id="editor1"> with an CKEditor instance.
+                      var editor = CKEDITOR.replace('ContentDescription');
+                      //]]>
+		</script>
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AurhorDescription)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AurhorDescription)
+                @Html.ValidationMessageFor(model => model.AurhorDescription)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EditorComment)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EditorComment)
+                @Html.ValidationMessageFor(model => model.EditorComment)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TOC)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TOC)
+                @Html.ValidationMessageFor(model => model.TOC)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CategoryId)
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Clicks)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Clicks)
+                @Html.ValidationMessageFor(model => model.Clicks)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>C++Primer Plus（第五版）中文版</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4945 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4945 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4945 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>C++Primer Plus（第五版）中文版</td></tr>
+        <tr><td>作者</td><td>[美]普拉塔（Prata,S.）  著，孙建春，韦强  译</td></tr>
+        <tr><td>单价</td><td>72.00 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/9787115134165.jpg" /></td></tr>
+          <tr><td>目录</td><td>第1章 预备知识<br>  1.1 C++简介<br>  1.2 C++简史<br>  1.3 可移植性和标准<br>  1.4 程序创建的技巧<br>  1.5 总结<br>第2章 开始学习C++<br>  2.1 进入C++<br>  2.2 C++语句<br>  2.3 其他C++语句<br>  2.4 函数<br>  2.5 总结<br>  2.6 复习题<br>  2.7 编程练习<br>第3章 处理数据<br>  3.1 简单变量<br>  3.2 const限定符<br>  3.3 浮点数<br>  3.4 C++简术操作符<br>  3.5 总结<br>  3.6 复习题<br>  3.7 编程练习<br>第4章 复合类型<br>  4.1 数组<br>  4.2 字符串<br>  4.3 string类简介<br>  4.4 结构简介<br>  4.5 共同体<br>  4.6 枚举<br>  4.7 指针和自由存储空间<br>  4.8 指针、数组和指针算术<br>  4.9 总结<br>  4.10 复习题<br>  4.11 编程练习<br>第5章 循环和关系表达式<br>  5.1 for循环<br>  5.2 关系表达式<br>  5.3 while循环<br>  5.4 do while循环<br>  5.5 循环和文本输入<br>  5.6 嵌套循环和二维数组<br>  5.7 总结<br>  5.8 复习题<br>  5.9 编程练习<br>第6章 分支语句和逻辑操作符<br>第7章 函数——C++的编程模块<br>第8章 函数探幽<br>第9章 内存模型和名称空间<br>第10章 对象和类<br>第11章 使用类<br>第12章 类和动态内存分配<br>第13章 类继承<br>第14章 C++中的代码重用<br>第15章 友元、异常和其他<br>第16章 string类和标准模板库<br>第17章 输入、输出和文件<br>附录A 计数系统<br>附录B C++保留字<br>附录C ASCII字符集<br>附录D 操作符优先级<br>附录E 其他操作符<br>附录F string模板类<br>附录G STL方法和函数<br>附录H 精选读物和网上资源<br>附录I 转换为ANSI/ISO标准C++<br>附录J 复习题答案</td></tr>
+          <tr><td>内容简介</td><td>C++是在C语言基础上开发的一种集面向对象编程、通用编程和传统的过程化编程于一体的编程语言，是C语言的超集。本书是根据2003年的ISO/ANSI C++标准编写的，通过大量短小精悍的程序详细而全面地阐述了C++的基本概念和技术。<br>　　全书分17章和10个附录，分别介绍了C++程序的运行方式、基本数据类型、复合数据类型、循环和关系表达式、分支语句和逻辑操作符、函数重载和函数模板、内存模型和名称空间、类的设计和使用、多态、虚函数、动态内存分配、继承、代码重用、友元、异常处理技术、string类和标准模板库、输入/输出等内容。<br>　　本书针对C++初学者，从C语言基础知识开始介绍，然后在此基础上详细阐述C++新增的特性，因此不要求读者有较多C语言方面的背景知识。本书可作为高等院校C++课程的教材，也可供初学者自学C++时使用。<br><br>作者简介：<br>    Stephen Prata在加州肯特菲尔得的马林学院教授天文、物理和计算机科学。他毕业于加州理工学院，在加州大学伯克利分校获得博士学位。Stephen本人或他人合作编写的图书有十多本。他撰写的the Waite Group's New C Primer Plus一书获得了计算机出版联合会1990年度最佳“How-to”计算机图书奖；他撰写的The Waite Group's C++Primer Plus一书获得了计算机出版联合会1991年度最佳“How-to”计算机图书奖的提名。<br></td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>

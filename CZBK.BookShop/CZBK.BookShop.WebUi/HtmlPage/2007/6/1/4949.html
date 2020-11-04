@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Expert C# 2005 Business Objects中文版（第二版）</title>
+    <link href="/CSS/tableStyle.css" rel="stylesheet" /><!--在模板文件中引用外部文件时一定要用绝对路径-->
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+     <script src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnComment").click(function (data) {
+                addComment();
+            });
+            //  loadComment();//加载评论
+            loadUBBEdit();//加载UBB编辑器.
+            $("#cart").click(function () {
+                addCart();
+            });
+        });
+        function addCart() {
+            $.post("/Cart/AddCart", { "bookId": 4949 }, function (data) {
+                var serverData = data.split(':');
+                if (serverData[0] == "ok") {
+                    window.location.href = "/Cart/Index";
+                } else {
+                    alert(serverData[1]);
+                }
+            });
+        }
+
+
+        function loadUBBEdit() {
+            CKEDITOR.replace('txtComment',
+	{
+	    extraPlugins: 'bbcode',
+	    removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+	    toolbar:
+		[
+			['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+			['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+			['Link', 'Unlink', 'Image'],
+			'/',
+			['FontSize', 'Bold', 'Italic', 'Underline'],
+			['NumberedList', 'BulletedList', '-', 'Blockquote'],
+			['TextColor', '-', 'Smiley', 'SpecialChar', '-', 'Maximize']
+		],
+	    smiley_images:
+		[
+			'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+			'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+			'cry_smile.gif', 'kiss.gif'
+		],
+	    smiley_descriptions:
+		[
+			'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+			'indecision', 'angel', 'cool', 'crying', 'kiss'
+		]
+	});
+        }
+        //发布评论
+        function addComment() {
+            var oEditor = CKEDITOR.instances.txtComment;//获取编辑器.
+            var msg = oEditor.getData();//获取编辑器中的数据
+            if (msg != "") {
+                $.post("/BookList/AddComment", { "msg": msg, "bookId": 4949 }, function (data) {
+                    if (data == "ok") {
+                        alert("评论成功!!");
+                        //$("#txtComment").val("");
+                        oEditor.setData("");//给编辑器赋空值.
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("评论内容不能为空");
+            }
+        }
+        function loadComment() {
+            $.post("/BookList/LoadComment", { "bookId": 4949 }, function (data) {
+                var serverData = $.parseJSON(data);
+                for (var i = 0; i < serverData.length; i++) {
+                    $("<li>"+serverData[i].CreateDateTime+":"+serverData[i].Msg+"</li>").appendTo("#comment");
+                }
+            });
+        }
+        //评论延迟加载
+        function check() {
+            var obj = document.getElementById('comment');
+            var dom = (document.compatMode && document.compatMode == "CSS1Compat") ? document.documentElement : document.body;
+            var scrollTop = dom.scrollTop || document.body.scrollTop || 0;
+            if (obj.offsetTop - scrollTop - dom.clientHeight < 100) {
+                //alert("开始AJAX加载评论数据了！");
+                loadComment();
+            }
+            else {
+                setTimeout("check()", 1000);
+            }
+        }
+        setTimeout("check()", 1000);
+
+    </script>
+</head>
+<body>
+    <table>
+        <tr><td>书名</td><td>Expert C# 2005 Business Objects中文版（第二版）</td></tr>
+        <tr><td>作者</td><td>（美）霍特卡  著，王鑫  译</td></tr>
+        <tr><td>单价</td><td>79.80 &nbsp;&nbsp;    <a href="javascript:void(0)" id="cart"><img src="/Images/Common/buy.gif"/></a></td></tr>
+        <tr><td>封面</td><td><img src="/Images/BookCovers/9787121038181.jpg" /></td></tr>
+          <tr><td>目录</td><td>关于作者 Ⅰ<br>关于技术审阅者 Ⅲ<br>鸣谢 Ⅴ<br>本书简介 Ⅶ<br>第1章  分布式架构 <br>  1.1  逻辑架构和物理架构 <br>　　1.1.1  复杂度 <br>　　1.1.2  逻辑模型和物理模型的关系 <br>　　1.1.3  一个五层的逻辑架构 <br>　　1.1.4  逻辑架构的应用 <br>　　1.1.5  前景 <br>　1.2  业务逻辑的管理 <br>　　1.2.1  业务逻辑潜在的位置 <br>　　1.2.2  业务对象 <br>　　1.2.3  移动对象 <br>　1.3  架构与框架 <br>　1.4  小结 <br>第2章  框架设计 <br>　2.1  基本设计目标 <br>　　2.1.1  N层撤销能力 <br>　　2.1.2  失效业务逻辑的跟踪 <br>　　2.1.3  对象是否变更的跟踪 <br>　　2.1.4  子对象的强类型集合 <br>　　2.1.5  用户界面开发的简单与抽象模型 <br>　　2.1.6  数据绑定的支持 <br>　　2.1.7  对象持久化与对象-关系影射 <br>　　2.1.8  自定义的身份验证 <br>　　2.1.9  集成的授权 <br>　2.2  框架设计 <br>　　2.2.1  业务对象的创建 <br>　　2.2.2  N层撤销功能 <br>　2.3  数据绑定的支持 <br>　　2.2.4  验证的规则 <br>　　2.2.5  数据门户 <br>　　2.2.6  定制的身份验证 <br>　　2.2.7  集成的授权 <br>　　2.2.8  工具类型与工具类 <br>　2.3  名字空间的组织 <br>　2.4  小结 <br>第3章  业务框架实现 <br>　3.1  创建CSLA.NET项目 <br>　　3.1.1  创建目录结构 <br>　　3.1.2  本地化的支持 <br>　3.2  Csla.Core名字空间 <br>　　3.2.1  IBusinessObject接口 <br>　　3.2.2  IUndoableObject接口 <br>　　3.2.3  IEditableCollection接口 <br>　　3.2.4  IReadOnlyObject接口 <br>　　3.2.5  IReadOnlyCollection接口 <br>　　3.2.6  ICommandObject接口 <br>　　3.2.7  ObjectCloner类 <br>　　3.2.8  BindableBase类 <br>　　3.2.9  NotUndoableAttribute类 <br>　　3.2.10  UndoableBase类 <br>　　3.2.11  BusinessBase类 <br>　　3.2.12  ReadOnlyBindingList类 <br>　3.3  Csla.Validation名字空间 <br>　　3.3.1  RuleHandler委托 <br>　　3.3.2  RuleArgs类 <br>　　3.3.3  RuleMethod类 <br>　　3.4.4  ValidationRules类 <br>　　3.3.5  BrokenRule类 <br>　　3.3.6  BrokenRulesCollection类 <br>　　3.3.7  ValidationException <br>    ……<br>第4章  数据访问与安全 <br>第5章  框架的完成  <br>第6章  面向对象的应用程序设计  <br>第7章  使用CSLA.NET的基类 <br>第8章  业务对象的实现 <br>第9章  Windows Forms UI <br>第10章  Web Forms UI <br>第11章  Web Services接口 <br>第12 章  远程数据门户宿主的实现 <br>索引</td></tr>
+          <tr><td>内容简介</td><td>本书描述了怎样应用面向对象的概念来进行.NET应用程序的架构、设计和开发。作者将重点放在了面向业务的对象，即业务对象和怎样在包括Web和客户机/服务器结构的不同分布式环境中来实现它们。本书使用了大量的.NET技术，面向对象的设计与编程思想，以及分布式架构。本书的前半部分叙述了如何在.NET环境创建这个框架来支持面向对象的应用程序开发的流程，后半部分应用这个框架创建了一个带有几个不同接口的示例应用程序，本书适合C#应用开发人员阅读。</td></tr>
+    </table>
+    <br />
+    <ul id="comment">
+
+    </ul>
+    <textarea id="txtComment" rows="20" cols="50" ></textarea>
+    <input type="button" value="发布评论" id="btnComment" />
+
+</body>
+</html>
